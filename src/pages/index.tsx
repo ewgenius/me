@@ -4,12 +4,13 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>ewgenius</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       <main>
-        <img className="avatar" src="/avatar.png" />
+        <img className="avatar" src="/images/avatar.png" />
         <h1 className="title">ewgenius</h1>
         <p className="description">Making things</p>
       </main>
