@@ -11,9 +11,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <img className="avatar" src="/images/avatar.png" />
+        <img className="avatar" src="/images/avatar.png" alt="logo" />
         <h1 className="title">ewgenius</h1>
-        <p className="description">Making things</p>
+        <p className="description">Making things...</p>
       </main>
     </div>
   );
