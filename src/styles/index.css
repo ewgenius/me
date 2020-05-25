@@ -5,6 +5,9 @@
 
   --spacing-1: 2px;
   --spacing-2: 4px;
+  --spacing-3: 8px;
+  --spacing-4: 16px;
+  --spacing-5: 32px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,8 +53,8 @@ footer {
   justify-content: center;
   align-content: center;
   color: var(--text-color-secondary);
-  margin-top: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-5);
+  margin-bottom: var(--spacing-5);
 }
 
 .links {
