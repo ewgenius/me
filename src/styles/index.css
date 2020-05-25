@@ -2,6 +2,9 @@
   --bg-color: #fff;
   --text-color: #000;
   --text-color-secondary: #bbb;
+
+  --spacing-1: 2px;
+  --spacing-2: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,16 +33,34 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
 main {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  color: var(--text-color-secondary);
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+.links > a:not(:first-child) {
+  margin-left: var(--spacing-2);
 }
 
 .avatar {
