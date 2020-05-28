@@ -7,13 +7,13 @@ export const Layout = ({ children }: PropsWithChildren<{}>) => (
     <footer>
       <div className="links">
         <a href="https://github.com/ewgenius" target="__blank">
-          <GitHub />
+          <GitHub size={16} />
         </a>
         <a href="https://instagram.com/ewgeniux" target="__blank">
-          <Instagram />
+          <Instagram size={16} />
         </a>
         <a href="https://twitter.com/ewgeniux" target="__blank">
-          <Twitter />
+          <Twitter size={16} />
         </a>
       </div>
       <small>&copy; 2020, ewgenius.me</small>
