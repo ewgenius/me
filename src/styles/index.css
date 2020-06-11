@@ -18,6 +18,24 @@
   } */
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 32px 0;
+}
+
+h2 {
+  margin: 16px 0 8px;
+}
+
+h3 {
+  margin: 16px 0 8px;
+}
+
 html,
 body {
   padding: 0;
@@ -45,6 +63,15 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.resume-section {
+  width: 320px;
+}
+
+.resume-section > h3 > svg {
+  margin-bottom: -4px;
+  margin-right: 4px;
 }
 
 footer {
