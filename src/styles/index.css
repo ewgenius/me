@@ -33,7 +33,7 @@ h1 {
 h2,
 h3,
 h4 {
-  margin: 24px 0 16px;
+  padding: 24px 0 16px;
 }
 
 html,
@@ -78,10 +78,17 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 4px;
 }
 
 .resume-section {
-  width: 320px;
+  min-width: 320px;
+}
+
+.resume-section > h3 {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
 }
 
 .resume-section:not(:last-child) {
@@ -93,13 +100,13 @@ h3 > svg {
   margin-right: 4px;
 }
 
-.card {
-  /* border-radius: 8px; */
+.job {
+  min-width: 320px;
   padding: var(--spacing-2) var(--spacing-4) var(--spacing-4);
   border-left: 2px solid var(--line-color);
 }
 
-.card:not(:last-child) {
+.job:not(:last-child) {
   margin-bottom: var(--spacing-4);
 }
 

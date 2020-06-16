@@ -35,7 +35,7 @@ export default function Resume(props: ResumeProps) {
         {Object.values(props.jobs)
           .sort((j1, j2) => j2.id - j1.id)
           .map((job) => (
-            <div className="card" key={job.id}>
+            <div className="job" key={job.id}>
               <b>{job.title}</b>
               <p className="job-details job-date">
                 {job.startDate} - {job.endDate || "now"}
