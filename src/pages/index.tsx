@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { Layout } from "components/Layout";
+import { ArrowRight } from "react-feather";
 
 export default function Home() {
   return (
@@ -6,6 +8,20 @@ export default function Home() {
       <img className="avatar" src="/images/avatar.png" alt="logo" />
       <h1 className="title">ewgenius</h1>
       <p className="description">Making things...</p>
+      <nav>
+        <Link href="/resume">
+          <a>
+            <ArrowRight size={16} />
+            resume
+          </a>
+        </Link>
+        <Link href="/contacts">
+          <a>
+            <ArrowRight size={16} />
+            contacts
+          </a>
+        </Link>
+      </nav>
     </Layout>
   );
 }

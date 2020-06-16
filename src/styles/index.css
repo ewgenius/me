@@ -1,6 +1,7 @@
 :root {
   --bg-color: #fff;
   --text-color: #000;
+  --line-color: #ddd;
   --text-color-secondary: #888;
 
   --spacing-1: 2px;
@@ -8,6 +9,7 @@
   --spacing-3: 8px;
   --spacing-4: 16px;
   --spacing-5: 32px;
+  --spacing-6: 64px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,12 +30,10 @@ h1 {
   margin: 32px 0;
 }
 
-h2 {
-  margin: 16px 0 8px;
-}
-
-h3 {
-  margin: 16px 0 8px;
+h2,
+h3,
+h4 {
+  margin: 24px 0 16px;
 }
 
 html,
@@ -57,6 +57,21 @@ body {
   align-items: center;
 }
 
+nav {
+  margin: var(--spacing-5) 0 var(--spacing-6) -20px;
+  display: flex;
+  flex-flow: column;
+}
+
+nav > a {
+  margin-bottom: var(--spacing-2);
+}
+
+nav > a > svg {
+  margin-bottom: -2px;
+  margin-right: 4px;
+}
+
 main {
   flex-grow: 1;
   display: flex;
@@ -69,9 +84,23 @@ main {
   width: 320px;
 }
 
-.resume-section > h3 > svg {
+.resume-section:not(:last-child) {
+  margin-bottom: var(--spacing-4);
+}
+
+h3 > svg {
   margin-bottom: -4px;
   margin-right: 4px;
+}
+
+.card {
+  border-radius: 8px;
+  padding: var(--spacing-4);
+  border: 1px solid var(--line-color);
+}
+
+.card:not(:last-child) {
+  margin-bottom: var(--spacing-2);
 }
 
 footer {

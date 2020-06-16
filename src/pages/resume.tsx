@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import { Briefcase, BookOpen, Book } from "react-feather";
+import { Briefcase, BookOpen, ArrowLeftCircle } from "react-feather";
 import { Layout } from "components/Layout";
 
 export type Dictionary<T = any> = { [id: string]: T };
@@ -33,7 +33,9 @@ export default function Resume(props: ResumeProps) {
         </h3>
         <ul>
           {Object.values(props.jobs).map((job) => (
-            <li key={job.id}>{job.title}</li>
+            <li className="card" key={job.id}>
+              {job.title}
+            </li>
           ))}
         </ul>
       </section>
