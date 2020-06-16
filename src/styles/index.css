@@ -94,13 +94,18 @@ h3 > svg {
 }
 
 .card {
-  border-radius: 8px;
-  padding: var(--spacing-4);
-  border: 1px solid var(--line-color);
+  /* border-radius: 8px; */
+  padding: var(--spacing-2) var(--spacing-4) var(--spacing-4);
+  border-left: 2px solid var(--line-color);
 }
 
 .card:not(:last-child) {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.job-details {
+  font-size: 12px;
+  color: var(--text-color-secondary);
 }
 
 footer {

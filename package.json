@@ -8,12 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "date-fns": "^2.14.0",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-feather": "^2.0.8"
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
     "prettier": "^2.0.4",
