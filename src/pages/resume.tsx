@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import { format } from "date-fns";
-import { Briefcase, BookOpen, ArrowLeftCircle } from "react-feather";
+import { Briefcase, BookOpen, Circle } from "react-feather";
 import { Layout } from "components/Layout";
 
 export type Dictionary<T = any> = { [id: string]: T };
