@@ -1,5 +1,7 @@
 :root {
   --bg-color: #fff;
+  --accent-color: #000;
+  --accent-text-color: #fff;
   --text-color: #000;
   --line-color: #ddd;
   --text-color-secondary: #888;
@@ -78,10 +80,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 4px;
+  padding: 0 16px;
 }
 
 .resume-section {
+  width: 100%;
   min-width: 320px;
 }
 
@@ -113,6 +116,35 @@ h3 > svg {
 .job-details {
   font-size: 12px;
   color: var(--text-color-secondary);
+  margin-top: var(--spacing-1);
+}
+
+.job-company {
+  font-weight: 600;
+}
+
+.job-description {
+  color: var(--text-color);
+  margin-top: var(--spacing-4);
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  margin-top: var(--spacing-4);
+}
+
+.tag {
+  border-radius: 10px;
+  height: 20px;
+  font-size: 10px;
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+}
+
+.tag:not(:last-child) {
+  margin-right: var(--spacing-1);
 }
 
 footer {
