@@ -30,6 +30,7 @@ button.theme {
   top: 40px;
   right: 40px;
   cursor: pointer;
+  outline: none;
 }
 
 * {
@@ -75,6 +76,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
