@@ -12,12 +12,14 @@
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-feather": "^2.0.8"
+    "react-feather": "^2.0.8",
+    "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
     "@types/date-fns": "^2.6.0",
     "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
+    "@types/use-dark-mode": "^2.3.1",
     "prettier": "^2.0.4",
     "typescript": "^3.8.3"
   },

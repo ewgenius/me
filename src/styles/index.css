@@ -14,14 +14,22 @@
   --spacing-6: 64px;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* :root {
-    --bg-color: #000;
-    --text-color: #fff;
-    --text-color-secondary: #777;
-    --accent-color: #fff;
-    --accent-text-color: #000;
-  } */
+body.dark-mode {
+  --bg-color: #000;
+  --text-color: #fff;
+  --text-color-secondary: #777;
+  --accent-color: #fff;
+  --accent-text-color: #000;
+}
+
+button.theme {
+  color: var(--text-color);
+  border: none;
+  background: none;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
 }
 
 * {
