@@ -19,6 +19,8 @@
     --bg-color: #000;
     --text-color: #fff;
     --text-color-secondary: #777;
+    --accent-color: #fff;
+    --accent-text-color: #000;
   } */
 }
 
@@ -26,6 +28,14 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+
+a {
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--text-color-secondary);
 }
 
 h1 {
@@ -60,7 +70,7 @@ body {
 }
 
 nav {
-  margin: var(--spacing-5) 0 var(--spacing-6) -20px;
+  margin: var(--spacing-6) 0 var(--spacing-6) -20px;
   display: flex;
   flex-flow: column;
 }
@@ -83,24 +93,34 @@ main {
   padding: 0 16px;
 }
 
-.resume-section {
+section {
   width: 100%;
   min-width: 320px;
 }
 
-.resume-section > h3 {
+section > h3 {
   position: sticky;
   top: 0;
   background-color: var(--bg-color);
 }
 
-.resume-section:not(:last-child) {
+section:not(:last-child) {
   margin-bottom: var(--spacing-4);
 }
 
 h3 > svg {
   margin-bottom: -4px;
   margin-right: 4px;
+}
+
+h1.page-title {
+  position: relative;
+}
+
+h1.page-title > a.back {
+  position: absolute;
+  left: -32px;
+  top: 2px;
 }
 
 .job {
@@ -114,7 +134,7 @@ h3 > svg {
 }
 
 .job-details {
-  font-size: 12px;
+  font-size: 0.8rem;
   color: var(--text-color-secondary);
   margin-top: var(--spacing-1);
 }
@@ -126,7 +146,7 @@ h3 > svg {
 .job-description {
   color: var(--text-color);
   margin-top: var(--spacing-4);
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 
 .tags {
@@ -137,7 +157,7 @@ h3 > svg {
 .tag {
   border-radius: 9px;
   height: 18px;
-  font-size: 10px;
+  font-size: 0.7rem;
   padding: var(--spacing-1) var(--spacing-3);
   background-color: var(--accent-color);
   color: var(--accent-text-color);
