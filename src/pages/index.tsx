@@ -15,12 +15,12 @@ export default function Home() {
             resume
           </a>
         </Link>
-        <Link href="/projects">
+        {/* <Link href="/projects">
           <a>
             <ArrowRight size={16} />
             projects
           </a>
-        </Link>
+        </Link> */}
         <Link href="/contacts">
           <a>
             <ArrowRight size={16} />
