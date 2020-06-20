@@ -1,9 +1,39 @@
 import { PropsWithChildren } from "react";
-import { GitHub, Instagram, Twitter, Linkedin } from "react-feather";
+import {
+  GitHub,
+  Instagram,
+  Twitter,
+  Linkedin,
+  ArrowLeftCircle,
+} from "react-feather";
+import Link from "next/link";
 
-export const Layout = ({ children }: PropsWithChildren<{}>) => (
+export interface LayoutProps {
+  title?: string;
+  disableBack?: boolean;
+}
+
+export const Layout = ({
+  children,
+  title,
+  disableBack,
+}: PropsWithChildren<LayoutProps>) => (
   <div className="container">
-    <main>{children}</main>
+    <main>
+      {title && (
+        <h1 className="page-title">
+          {!disableBack && (
+            <Link href="/">
+              <a className="back">
+                <ArrowLeftCircle />
+              </a>
+            </Link>
+          )}
+          {title}
+        </h1>
+      )}
+      {children}
+    </main>
     <footer>
       <div className="links">
         <a href="https://github.com/ewgenius" target="__blank">

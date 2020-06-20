@@ -43,9 +43,8 @@ export const Job = ({ job }: { job: Job }) => {
 
 export default function Resume(props: ResumeProps) {
   return (
-    <Layout>
-      <h1>Resume</h1>
-      <section className="resume-section">
+    <Layout title="Resume">
+      <section>
         <h3>About me</h3>
         <p>My name is Evgeniy Khramkov</p>
         <p>
@@ -54,7 +53,7 @@ export default function Resume(props: ResumeProps) {
         </p>
       </section>
 
-      <section className="resume-section">
+      <section>
         <h3>
           <Briefcase size={20} />
           Work experience
@@ -66,7 +65,7 @@ export default function Resume(props: ResumeProps) {
           ))}
       </section>
 
-      <section className="resume-section">
+      <section>
         <h3>
           <BookOpen size={20} />
           Study
