@@ -26,7 +26,11 @@ export const Layout = ({
   return (
     <div className="container">
       <main>
-        <button className="theme" onClick={darkMode.toggle}>
+        <button
+          aria-label="toggle theme"
+          className="theme"
+          onClick={darkMode.toggle}
+        >
           {darkMode.value ? <Moon /> : <Sun />}
         </button>
         {title && (
