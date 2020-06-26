@@ -52,6 +52,10 @@ a:hover {
   color: var(--text-color-secondary);
 }
 
+.contacts {
+  margin-top: var(--spacing-5);
+}
+
 .contacts a > svg {
   margin-bottom: -2px;
   margin-right: 4px;
@@ -121,6 +125,10 @@ main {
   justify-content: center;
   align-items: center;
   padding: 0 16px;
+}
+
+main.page {
+  justify-content: flex-start;
 }
 
 section {
