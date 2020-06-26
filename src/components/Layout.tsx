@@ -25,7 +25,7 @@ export const Layout = ({
 
   return (
     <div className="container">
-      <main className={title ? "page" : ""}>
+      <main>
         <button
           aria-label="toggle theme"
           className="theme"
