@@ -21,6 +21,12 @@ export default function Home() {
             projects
           </a>
         </Link> */}
+        <Link href="/blog">
+          <a>
+            <ArrowRight size={16} />
+            blog
+          </a>
+        </Link>
         <Link href="/contacts">
           <a>
             <ArrowRight size={16} />

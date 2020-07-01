@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import Head from "next/head";
 import useDarkMode from "use-dark-mode";
 import Link from "next/link";
 import {
@@ -14,12 +15,14 @@ import {
 export interface LayoutProps {
   title?: string;
   disableBack?: boolean;
+  parentPage?: string;
 }
 
 export const Layout = ({
   children,
   title,
   disableBack,
+  parentPage,
 }: PropsWithChildren<LayoutProps>) => {
   const darkMode = useDarkMode();
 
@@ -34,16 +37,21 @@ export const Layout = ({
           {darkMode.value ? <Moon /> : <Sun />}
         </button>
         {title && (
-          <h1 className="page-title">
-            {!disableBack && (
-              <Link href="/">
-                <a className="back">
-                  <ArrowLeftCircle />
-                </a>
-              </Link>
-            )}
-            {title}
-          </h1>
+          <>
+            <Head>
+              <title>{title}</title>
+            </Head>
+            <h1 className="page-title">
+              {!disableBack && (
+                <Link href={parentPage ? parentPage : "/"}>
+                  <a className="back">
+                    <ArrowLeftCircle />
+                  </a>
+                </Link>
+              )}
+              {title}
+            </h1>
+          </>
         )}
         {children}
       </main>
