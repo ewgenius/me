@@ -46,6 +46,8 @@ button.theme:hover {
 
 a {
   transition: color 0.3s;
+  color: inherit;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -111,6 +113,7 @@ nav {
 
 nav > a {
   margin-bottom: var(--spacing-3);
+  text-decoration: none;
 }
 
 nav > a > svg {
@@ -221,11 +224,6 @@ footer {
 .avatar {
   height: 128px;
   width: 128px;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 .title {
