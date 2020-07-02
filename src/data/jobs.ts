@@ -76,7 +76,7 @@ export const jobs: Dictionary<Job> = {
   },
   "6": {
     id: 6,
-    title: "software engineer 2",
+    title: "software engineer",
     company: "Microsoft (Rus) - App Center",
     description: [
       `full-stack development of App Center <a href="https://appcenter.ms" target="__blank">https://appcenter.ms</a>`,
@@ -87,7 +87,7 @@ export const jobs: Dictionary<Job> = {
   },
   "7": {
     id: 7,
-    title: "software engineer 2",
+    title: "software engineer",
     company: "Microsoft (US) - App Center",
     description: [
       `full-stack development of App Center <a href="https://appcenter.ms" target="__blank">https://appcenter.ms</a>`,
@@ -98,7 +98,7 @@ export const jobs: Dictionary<Job> = {
   },
   "8": {
     id: 8,
-    title: "software engineer 2",
+    title: "software engineer",
     company: "Microsoft (US) - GitHub Collaborator",
     description: [`GitHub Enterprise infrastructure development`],
     startDate: formatJobDate(new Date("Jan 1, 2020")),
@@ -107,7 +107,7 @@ export const jobs: Dictionary<Job> = {
   },
   "9": {
     id: 9,
-    title: "software engineer 2",
+    title: "software engineer",
     company: "GitHub",
     description: [`GitHub Enterprise infrastructure development`],
     startDate: formatJobDate(new Date("Jul 1, 2020")),
