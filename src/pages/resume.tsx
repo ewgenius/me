@@ -4,6 +4,9 @@ import { Layout } from "components/Layout";
 import { Dictionary } from "data/dictionary";
 import { Job, jobs } from "data/jobs";
 
+// @ts-ignore
+import ResumeAbout from "../content/resume-about.mdx";
+
 export interface ResumeProps {
   jobs: Dictionary<Job>;
 }
@@ -39,11 +42,7 @@ export default function Resume(props: ResumeProps) {
     <Layout title="Resume">
       <section>
         <h3>About me</h3>
-        <p>My name is Evgeniy Khramkov</p>
-        <p>
-          I'm software developer with 7+ years experience in backend and
-          frontend development
-        </p>
+        <ResumeAbout />
       </section>
 
       <section>
