@@ -158,10 +158,13 @@ main {
   flex-grow: 1;
   max-width: 800px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 0 16px;
+}
+
+main.center {
+  justify-content: center;
 }
 
 section {
@@ -186,7 +189,6 @@ h3 > svg {
 h1.page-title {
   display: flex;
   align-items: baseline;
-  align-self: flex-start;
 }
 
 h1.page-title > a.back {
@@ -290,6 +292,12 @@ footer {
 @media (max-width: 800px) {
   main {
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  h1.page-title {
+    align-self: flex-start;
   }
 }
 
