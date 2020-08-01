@@ -61,7 +61,10 @@ export const Layout = ({
           {title && (
             <h1 className="page-title">
               {!disableBack && (
-                <Link href={parentPage ? parentPage : "/" + lang}>
+                <Link
+                  as={parentPage ? parentPage : "/" + lang}
+                  href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
+                >
                   <a className="back">
                     <ArrowLeftCircle />
                   </a>

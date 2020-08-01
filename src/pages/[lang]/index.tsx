@@ -14,7 +14,7 @@ export default function Home() {
       <h1 className="title">ewgenius</h1>
       <p className="description">Making things...</p>
       <nav>
-        <Link href={`/${query.lang}/resume`}>
+        <Link as={`/${query.lang}/resume`} href="/[lang]/resume">
           <a>
             <ArrowRight size={16} />
             resume
@@ -32,7 +32,7 @@ export default function Home() {
             blog
           </a>
         </Link> */}
-        <Link href="/contacts">
+        <Link as={`/${query.lang}/contacts`} href="/[lang]/contacts">
           <a>
             <ArrowRight size={16} />
             contacts
