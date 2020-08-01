@@ -38,6 +38,39 @@ button.theme:hover {
   color: var(--text-color-secondary);
 }
 
+button.lang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  border: none;
+  background: none;
+  position: absolute;
+  top: 40px;
+  right: 80px;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.3s;
+  font-size: 0.8rem;
+}
+
+button.lang:hover {
+  color: var(--text-color-secondary);
+}
+
+button.lang > svg {
+  margin: 0 4px;
+}
+
+button.lang > span:not(.active) {
+  color: var(--text-color-secondary);
+}
+
+button.lang > span.current {
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
 * {
   margin: 0px;
   padding: 0px;

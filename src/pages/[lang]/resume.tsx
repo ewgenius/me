@@ -1,41 +1,17 @@
 import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
+import { JobCard } from "@components/JobCard";
 import { Dictionary } from "@data/dictionary";
 import { Job, jobs } from "@data/jobs";
+import { getLangStaticPaths } from "utils";
 
 // @ts-ignore
-import ResumeAbout from "../../content/resume-about.mdx";
+import ResumeAbout from "@content/resume-about.mdx";
 
 export interface ResumeProps {
   jobs: Dictionary<Job>;
 }
-
-export const JobCard = ({ job }: { job: Job }) => {
-  return (
-    <div className="job" key={job.id}>
-      <b>{job.title}</b>
-      <p className="job-details job-company">{job.company}</p>
-      <p className="job-details job-date">
-        {job.startDate} - {job.endDate || "now"}
-      </p>
-      {job.description && (
-        <div
-          className="job-details job-description"
-          dangerouslySetInnerHTML={{ __html: job.description.join("<br />") }}
-        />
-      )}
-      <div className="tags">
-        {job.tags &&
-          job.tags.map((tag) => (
-            <div key={`${job.id}-${tag}`} className="tag">
-              {tag}
-            </div>
-          ))}
-      </div>
-    </div>
-  );
-};
 
 export default function Resume(props: ResumeProps) {
   return (
@@ -67,3 +43,5 @@ export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
     },
   };
 };
+
+export const getStaticPaths = getLangStaticPaths;
