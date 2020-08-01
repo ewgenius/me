@@ -32,7 +32,9 @@ export const Layout = ({
     <>
       <Head>
         {title && <title>{title}</title>}
+        {title && <meta property="og:title" content={title} />}
         {description && <meta name="description" content={description} />}
+        {description && <meta name="og:description" content={description} />}
       </Head>
       <div className="container">
         <main>
