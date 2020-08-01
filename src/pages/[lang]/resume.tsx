@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
-import { Layout } from "components/Layout";
-import { Dictionary } from "data/dictionary";
-import { Job, jobs } from "data/jobs";
+import { Layout } from "@components/Layout";
+import { Dictionary } from "@data/dictionary";
+import { Job, jobs } from "@data/jobs";
 
 // @ts-ignore
 import ResumeAbout from "../content/resume-about.mdx";

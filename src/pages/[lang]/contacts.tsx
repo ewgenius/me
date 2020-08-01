@@ -1,5 +1,5 @@
-import { Layout } from "../components/Layout";
 import { Mail, Linkedin, MessageCircle } from "react-feather";
+import { Layout } from "@components/Layout";
 
 export default function Contacts() {
   return (
