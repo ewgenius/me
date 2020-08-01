@@ -20,6 +20,7 @@ export interface LayoutProps {
   description?: string;
   disableBack?: boolean;
   parentPage?: string;
+  center?: boolean;
 }
 
 export const Layout = ({
@@ -28,6 +29,7 @@ export const Layout = ({
   description,
   disableBack,
   parentPage,
+  center,
 }: PropsWithChildren<LayoutProps>) => {
   const darkMode = useDarkMode();
   const { lang, toggleLang } = useLocale();
@@ -41,7 +43,7 @@ export const Layout = ({
         {description && <meta name="og:description" content={description} />}
       </Head>
       <div className="container">
-        <main>
+        <main className={center ? "center" : ""}>
           <button
             aria-label="toggle theme"
             className="lang"
