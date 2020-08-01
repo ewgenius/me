@@ -38,6 +38,39 @@ button.theme:hover {
   color: var(--text-color-secondary);
 }
 
+button.lang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  border: none;
+  background: none;
+  position: absolute;
+  top: 40px;
+  right: 80px;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.3s;
+  font-size: 0.8rem;
+}
+
+button.lang:hover {
+  color: var(--text-color-secondary);
+}
+
+button.lang > svg {
+  margin: 0 4px;
+}
+
+button.lang > span:not(.active) {
+  color: var(--text-color-secondary);
+}
+
+button.lang > span.current {
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -123,6 +156,7 @@ nav > a > svg {
 
 main {
   flex-grow: 1;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,13 +184,17 @@ h3 > svg {
 }
 
 h1.page-title {
-  position: relative;
+  display: flex;
+  align-items: baseline;
+  align-self: flex-start;
 }
 
 h1.page-title > a.back {
-  position: absolute;
-  left: -32px;
-  top: 2px;
+  display: block;
+  margin-right: 4px;
+  /* position: absolute; */
+  /* left: -32px; */
+  /* top: 2px; */
 }
 
 .job {
@@ -241,6 +279,18 @@ footer {
   line-height: 1.5;
   font-size: 1rem;
   color: var(--text-color-secondary);
+}
+
+@media (min-width: 800px) {
+  main {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 800px) {
+  main {
+    width: 100%;
+  }
 }
 
 @media (max-width: 352px) {

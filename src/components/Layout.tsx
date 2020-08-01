@@ -10,7 +10,10 @@ import {
   ArrowLeftCircle,
   Sun,
   Moon,
+  ToggleLeft,
+  ToggleRight,
 } from "react-feather";
+import { useLocale } from "utils/useLocale";
 
 export interface LayoutProps {
   title?: string;
@@ -27,6 +30,7 @@ export const Layout = ({
   parentPage,
 }: PropsWithChildren<LayoutProps>) => {
   const darkMode = useDarkMode();
+  const { lang, toggleLang } = useLocale();
 
   return (
     <>
@@ -40,6 +44,15 @@ export const Layout = ({
         <main>
           <button
             aria-label="toggle theme"
+            className="lang"
+            onClick={toggleLang}
+          >
+            <span className={lang === "ru" ? "current" : ""}>RU</span>
+            {lang === "ru" ? <ToggleLeft /> : <ToggleRight />}
+            <span className={lang === "en" ? "current" : ""}>EN</span>
+          </button>
+          <button
+            aria-label="toggle theme"
             className="theme"
             onClick={darkMode.toggle}
           >
@@ -48,7 +61,10 @@ export const Layout = ({
           {title && (
             <h1 className="page-title">
               {!disableBack && (
-                <Link href={parentPage ? parentPage : "/"}>
+                <Link
+                  as={parentPage ? parentPage : "/" + lang}
+                  href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
+                >
                   <a className="back">
                     <ArrowLeftCircle />
                   </a>

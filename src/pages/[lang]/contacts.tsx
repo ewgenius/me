@@ -1,5 +1,7 @@
-import { Layout } from "../components/Layout";
 import { Mail, Linkedin, MessageCircle } from "react-feather";
+import { Layout } from "@components/Layout";
+import { GetStaticProps } from "next";
+import { getLangStaticPaths } from "utils";
 
 export default function Contacts() {
   return (
@@ -33,3 +35,11 @@ export default function Contacts() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps<{}> = async () => {
+  return {
+    props: {},
+  };
+};
+
+export const getStaticPaths = getLangStaticPaths;
