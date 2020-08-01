@@ -5,7 +5,7 @@ import { Dictionary } from "@data/dictionary";
 import { Job, jobs } from "@data/jobs";
 
 // @ts-ignore
-import ResumeAbout from "../content/resume-about.mdx";
+import ResumeAbout from "../../content/resume-about.mdx";
 
 export interface ResumeProps {
   jobs: Dictionary<Job>;
