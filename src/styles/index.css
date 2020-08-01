@@ -183,13 +183,17 @@ h3 > svg {
 }
 
 h1.page-title {
-  position: relative;
+  display: flex;
+  align-items: baseline;
+  align-self: flex-start;
 }
 
 h1.page-title > a.back {
-  position: absolute;
-  left: -32px;
-  top: 2px;
+  display: block;
+  margin-right: 4px;
+  /* position: absolute; */
+  /* left: -32px; */
+  /* top: 2px; */
 }
 
 .job {
