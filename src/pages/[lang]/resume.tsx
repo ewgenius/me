@@ -7,18 +7,22 @@ import { Job, jobs } from "@data/jobs";
 import { getLangStaticPaths } from "utils";
 
 // @ts-ignore
-import ResumeAbout from "@content/resume-about.mdx";
+import ResumeAboutRu from "@content/ru/resume-about.mdx";
+// @ts-ignore
+import ResumeAboutEn from "@content/en/resume-about.mdx";
+import { useLocale } from "utils/useLocale";
 
 export interface ResumeProps {
   jobs: Dictionary<Job>;
 }
 
 export default function Resume(props: ResumeProps) {
+  const { lang } = useLocale();
   return (
     <Layout title="Resume">
       <section>
         <h3>About me</h3>
-        <ResumeAbout />
+        {lang === "ru" ? <ResumeAboutRu /> : <ResumeAboutEn />}
       </section>
 
       <section>
