@@ -1,6 +1,5 @@
 import { PropsWithChildren } from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import useDarkMode from "use-dark-mode";
 import Link from "next/link";
 import {
@@ -43,17 +42,15 @@ export const Layout = ({
       </Head>
       <div className="container">
         <main>
-          <Link href={`/#{}`}>
-            <button
-              aria-label="toggle theme"
-              className="lang"
-              onClick={toggleLang}
-            >
-              <span className={lang === "ru" ? "current" : ""}>RU</span>
-              {lang === "ru" ? <ToggleLeft /> : <ToggleRight />}
-              <span className={lang === "en" ? "current" : ""}>EN</span>
-            </button>
-          </Link>
+          <button
+            aria-label="toggle theme"
+            className="lang"
+            onClick={toggleLang}
+          >
+            <span className={lang === "ru" ? "current" : ""}>RU</span>
+            {lang === "ru" ? <ToggleLeft /> : <ToggleRight />}
+            <span className={lang === "en" ? "current" : ""}>EN</span>
+          </button>
           <button
             aria-label="toggle theme"
             className="theme"

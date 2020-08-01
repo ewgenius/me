@@ -8,17 +8,14 @@ export const useLocale = () => {
 
   const lang = (router.query.lang as Lang) || "en";
 
-  const setLang = useCallback(
-    (newLang: Lang) => {
-      const route = router.asPath.substr(3);
-      router.push(`/${newLang}${route}`);
-    },
-    [router.asPath]
+  const toggleLang = useCallback(
+    () =>
+      router.push(
+        router.pathname,
+        router.asPath.replace(lang, lang === "ru" ? "en" : "ru")
+      ),
+    [router.asPath, lang]
   );
 
-  const toggleLang = useCallback(() => setLang(lang === "en" ? "ru" : "en"), [
-    lang,
-  ]);
-
-  return { lang, setLang, toggleLang };
+  return { lang, toggleLang };
 };
