@@ -1,9 +1,10 @@
+import Airtable, { Table, FieldSet, Attachment } from "airtable";
 import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
 import { JobCard } from "@components/JobCard";
 import { Dictionary } from "@data/dictionary";
-import { Job, jobs } from "@data/jobs";
+import { Job } from "@data/jobs";
 import { getLangStaticPaths } from "utils";
 
 // @ts-ignore
@@ -41,9 +42,37 @@ export default function Resume(props: ResumeProps) {
 }
 
 export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
+  const jobsTable = new Airtable({
+    apiKey: process.env.AIRTABLE_API_KEY,
+  }).base(process.env.AIRTABLE_DB_ID)(
+    process.env.AIRTABLE_TABLE_ORDERS
+  ) as Table<Job>;
+
+  const jobs = await jobsTable.select().all();
+
   return {
     props: {
-      jobs,
+      jobs: jobs
+        .map((job) => {
+          const jobSerialized: Job = {
+            id: job.fields.id,
+            name: job.fields.name,
+            company: job.fields.company,
+            description: job.fields.description,
+            startDate: job.fields.startDate,
+            tags: job.fields.tags,
+          };
+
+          if (job.fields.endDate) {
+            jobSerialized.endDate = job.fields.endDate;
+          }
+
+          return jobSerialized;
+        })
+        .reduce((dict, job) => {
+          dict[job.id] = job;
+          return dict;
+        }, {}),
     },
   };
 };
