@@ -1,6 +1,10 @@
 import { Job } from "@data/jobs";
+import { useLocale } from "utils/useLocale";
 
 export const JobCard = ({ job }: { job: Job }) => {
+  const { lang } = useLocale();
+  const description =
+    (lang === "ru" && job.description_ru) || job.description_en;
   return (
     <div className="job" key={job.id}>
       <b>{job.name}</b>
@@ -8,10 +12,10 @@ export const JobCard = ({ job }: { job: Job }) => {
       <p className="job-details job-date">
         {job.startDate} - {job.endDate || "now"}
       </p>
-      {job.description && (
+      {description && (
         <div
           className="job-details job-description"
-          dangerouslySetInnerHTML={{ __html: job.description }}
+          dangerouslySetInnerHTML={{ __html: description }}
         />
       )}
       <div className="tags">

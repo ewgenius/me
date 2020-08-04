@@ -7,7 +7,8 @@ export interface Job extends FieldSet {
   name: string;
   company: string;
   startDate: string;
-  description?: string;
+  description_en?: string;
+  description_ru?: string;
   endDate?: string;
   tags?: string[];
 }

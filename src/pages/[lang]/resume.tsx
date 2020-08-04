@@ -58,13 +58,20 @@ export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
             id: job.fields.id,
             name: job.fields.name,
             company: job.fields.company,
-            description: job.fields.description,
             startDate: job.fields.startDate,
             tags: job.fields.tags,
           };
 
           if (job.fields.endDate) {
             jobSerialized.endDate = job.fields.endDate;
+          }
+
+          if (job.fields.description_en) {
+            jobSerialized.description_en = job.fields.description_en;
+          }
+
+          if (job.fields.description_ru) {
+            jobSerialized.description_ru = job.fields.description_ru;
           }
 
           return jobSerialized;
