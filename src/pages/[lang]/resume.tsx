@@ -12,15 +12,16 @@ import ResumeAboutRu from "@content/ru/resume-about.mdx";
 // @ts-ignore
 import ResumeAboutEn from "@content/en/resume-about.mdx";
 import { useLocale } from "utils/useLocale";
+import { PropsWithLocale } from "utils/withLocale";
 
-export interface ResumeProps {
+export type ResumeProps = PropsWithLocale<{
   jobs: Dictionary<Job>;
-}
+}>;
 
-export default function Resume(props: ResumeProps) {
+export default function Resume({ messages, jobs }: ResumeProps) {
   const { lang } = useLocale();
   return (
-    <Layout title="Resume">
+    <Layout title={messages["page.resume"]}>
       <section>
         <h3>About me</h3>
         {lang === "ru" ? <ResumeAboutRu /> : <ResumeAboutEn />}
@@ -31,7 +32,7 @@ export default function Resume(props: ResumeProps) {
           <Briefcase size={20} />
           Work experience
         </h3>
-        {Object.values(props.jobs)
+        {Object.values(jobs)
           .sort((j1, j2) => j2.id - j1.id)
           .map((job) => (
             <JobCard key={job.id} job={job} />
@@ -41,7 +42,12 @@ export default function Resume(props: ResumeProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
+export const getStaticProps: GetStaticProps<ResumeProps> = async ({
+  params,
+}) => {
+  const lang = params.lang;
+  const messages = require(`../../content/${lang}/messages.json`);
+
   const jobsTable = new Airtable({
     apiKey: process.env.AIRTABLE_API_KEY,
   }).base(process.env.AIRTABLE_DB_ID)(
@@ -52,6 +58,7 @@ export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
 
   return {
     props: {
+      messages,
       jobs: jobs
         .map((job) => {
           const jobSerialized: Job = {
