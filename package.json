@@ -10,6 +10,7 @@
   "dependencies": {
     "@mdx-js/loader": "^1.6.6",
     "@next/mdx": "^9.4.4",
+    "airtable": "^0.8.1",
     "date-fns": "^2.14.0",
     "fathom-client": "^3.0.0",
     "next": "^9.5.1",
@@ -19,6 +20,7 @@
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
+    "@types/airtable": "^0.8.0",
     "@types/date-fns": "^2.6.0",
     "@types/node": "^13.13.1",
     "@types/react": "^16.9.44",

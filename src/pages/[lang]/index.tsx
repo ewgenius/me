@@ -4,8 +4,9 @@ import { ArrowRight } from "react-feather";
 import { Layout } from "@components/Layout";
 import { GetStaticProps } from "next";
 import { getLangStaticPaths } from "utils";
+import { PropsWithLocale } from "utils/withLocale";
 
-export default function Home() {
+export default function Home({ messages }: PropsWithLocale) {
   const { query } = useRouter();
 
   return (
@@ -17,7 +18,7 @@ export default function Home() {
         <Link as={`/${query.lang}/resume`} href="/[lang]/resume">
           <a>
             <ArrowRight size={16} />
-            resume
+            {messages["nav.resume"]}
           </a>
         </Link>
         {/* <Link href="/projects">
@@ -35,7 +36,7 @@ export default function Home() {
         <Link as={`/${query.lang}/contacts`} href="/[lang]/contacts">
           <a>
             <ArrowRight size={16} />
-            contacts
+            {messages["nav.contacts"]}
           </a>
         </Link>
       </nav>
@@ -43,9 +44,15 @@ export default function Home() {
   );
 }
 
-export const getStaticProps: GetStaticProps<{}> = async () => {
+export const getStaticProps: GetStaticProps<PropsWithLocale> = async ({
+  params,
+}) => {
+  const lang = params.lang;
+  const messages = require(`../../content/${lang}/messages.json`);
   return {
-    props: {},
+    props: {
+      messages,
+    },
   };
 };
 
