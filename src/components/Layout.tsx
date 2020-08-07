@@ -38,39 +38,58 @@ export const Layout = ({
         {description && <meta name="description" content={description} />}
         {description && <meta name="og:description" content={description} />}
       </Head>
-      <div className="container mx-auto">
-        <main className={center ? "center" : ""}>
-          <ToggleLang />
-          <ToggleTheme />
-          {title && (
-            <h1 className="page-title">
-              {!disableBack && (
-                <Link
-                  as={parentPage ? parentPage : "/" + lang}
-                  href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
-                >
-                  <a className="back">
-                    <ArrowLeftCircle />
-                  </a>
-                </Link>
-              )}
-              {title}
-            </h1>
-          )}
+      <div className="container mx-auto max-w-4xl min-h-screen flex flex-col p-2">
+        <main className="flex-grow">
+          <nav className="flex flex-row py-4">
+            {title && (
+              <h1 className="flex text-4xl items-center">
+                {!disableBack && (
+                  <Link
+                    as={parentPage ? parentPage : "/" + lang}
+                    href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
+                  >
+                    <a className="mr-1">
+                      <ArrowLeftCircle />
+                    </a>
+                  </Link>
+                )}
+                {title}
+              </h1>
+            )}
+            <div className="flex-grow" />
+            <ToggleLang />
+            <ToggleTheme />
+          </nav>
           {children}
         </main>
-        <footer>
-          <div className="links">
-            <a href="https://github.com/ewgenius" target="__blank">
+        <footer className="flex flex-col justify-center items-center text-gray-600">
+          <div className="flex justify-center">
+            <a
+              className="text-gray-600 hover:text-gray-800 mr-1"
+              href="https://github.com/ewgenius"
+              target="__blank"
+            >
               <GitHub size={16} />
             </a>
-            <a href="https://instagram.com/ewgeniux" target="__blank">
+            <a
+              className="text-gray-600 hover:text-gray-800 mr-1"
+              href="https://instagram.com/ewgeniux"
+              target="__blank"
+            >
               <Instagram size={16} />
             </a>
-            <a href="https://twitter.com/ewgeniux" target="__blank">
+            <a
+              className="text-gray-600 hover:text-gray-800 mr-1"
+              href="https://twitter.com/ewgeniux"
+              target="__blank"
+            >
               <Twitter size={16} />
             </a>
-            <a href="https://www.linkedin.com/in/ewgenius/" target="__blank">
+            <a
+              className="text-gray-600 hover:text-gray-800"
+              href="https://www.linkedin.com/in/ewgenius/"
+              target="__blank"
+            >
               <Linkedin size={16} />
             </a>
           </div>

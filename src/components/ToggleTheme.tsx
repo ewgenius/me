@@ -6,7 +6,7 @@ export const ToggleTheme = () => {
   return (
     <button
       aria-label="toggle theme"
-      className="theme"
+      className="ml-4"
       onClick={darkMode.toggle}
     >
       {darkMode.value ? <Moon /> : <Sun />}
