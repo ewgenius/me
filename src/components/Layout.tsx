@@ -1,6 +1,5 @@
 import { PropsWithChildren } from "react";
 import Head from "next/head";
-import useDarkMode from "use-dark-mode";
 import Link from "next/link";
 import {
   GitHub,
@@ -8,12 +7,10 @@ import {
   Twitter,
   Linkedin,
   ArrowLeftCircle,
-  Sun,
-  Moon,
-  ToggleLeft,
-  ToggleRight,
 } from "react-feather";
 import { useLocale } from "utils/useLocale";
+import { ToggleTheme } from "@components/ToggleTheme";
+import { ToggleLang } from "@components/ToggleLang";
 
 export interface LayoutProps {
   title?: string;
@@ -31,8 +28,7 @@ export const Layout = ({
   parentPage,
   center,
 }: PropsWithChildren<LayoutProps>) => {
-  const darkMode = useDarkMode();
-  const { lang, toggleLang } = useLocale();
+  const { lang } = useLocale();
 
   return (
     <>
@@ -42,24 +38,10 @@ export const Layout = ({
         {description && <meta name="description" content={description} />}
         {description && <meta name="og:description" content={description} />}
       </Head>
-      <div className="container">
+      <div className="container mx-auto">
         <main className={center ? "center" : ""}>
-          <button
-            aria-label="toggle theme"
-            className="lang"
-            onClick={toggleLang}
-          >
-            <span className={lang === "ru" ? "current" : ""}>RU</span>
-            {lang === "ru" ? <ToggleLeft /> : <ToggleRight />}
-            <span className={lang === "en" ? "current" : ""}>EN</span>
-          </button>
-          <button
-            aria-label="toggle theme"
-            className="theme"
-            onClick={darkMode.toggle}
-          >
-            {darkMode.value ? <Moon /> : <Sun />}
-          </button>
+          <ToggleLang />
+          <ToggleTheme />
           {title && (
             <h1 className="page-title">
               {!disableBack && (
