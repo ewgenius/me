@@ -3,9 +3,10 @@ import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
 import { JobCard } from "@components/JobCard";
-import { Dictionary } from "@data/dictionary";
-import { Job } from "@data/jobs";
 import { getLangStaticPaths } from "utils";
+import { Job } from "utils/job";
+
+export type Dictionary<T = any> = { [id: string]: T };
 
 // @ts-ignore
 import ResumeAboutRu from "@content/ru/resume-about.mdx";
