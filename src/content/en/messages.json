@@ -2,5 +2,6 @@
   "nav.resume": "resume",
   "nav.contacts": "contacts",
 
-  "page.resume": "Resume"
+  "page.resume": "Resume",
+  "page.contacts": "Contacts"
 }
