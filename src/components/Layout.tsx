@@ -43,7 +43,7 @@ export const Layout = ({
               <h1 className="flex text-4xl font-bold items-center">
                 {!disableBack && (
                   <Link
-                    as={parentPage ? parentPage : "/" + lang}
+                    as={parentPage ? `/${lang}/${parentPage}` : `/${lang}`}
                     href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
                   >
                     <a className="mr-2 mt-1">
