@@ -2,33 +2,48 @@ import { Mail, Linkedin, MessageCircle } from "react-feather";
 import { Layout } from "@components/Layout";
 import { GetStaticProps } from "next";
 import { getLangStaticPaths } from "utils";
+import { PropsWithLocale } from "utils/withLocale";
 
-export default function Contacts() {
+export type ContactsProps = PropsWithLocale<{}>;
+
+export default function Contacts({ messages }: ContactsProps) {
   return (
-    <Layout title="Contacts">
-      <ul className="contacts">
+    <Layout title={messages["page.contacts"]}>
+      <ul className="ml-2 mt-4 text-lg">
         <li>
-          <a href="mailto:ewgeniux@gmail.com">
-            <Mail size={16} />
-            ewgeniux@gmail.com
+          <a className="flex items-center" href="mailto:ewgeniux@gmail.com">
+            <Mail className="mr-2" size={16} />
+            <span>ewgeniux@gmail.com</span>
           </a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/ewgenius/" target="__blank">
-            <Linkedin size={16} />
-            linkedin/ewgenius
+          <a
+            className="flex items-center"
+            href="https://www.linkedin.com/in/ewgenius/"
+            target="__blank"
+          >
+            <Linkedin className="mr-2" size={16} />
+            <span>linkedin/ewgenius</span>
           </a>
         </li>
         <li>
-          <a href="https://t.me/ewgenius" target="__blank">
-            <MessageCircle size={16} />
-            t.me/ewgenius
+          <a
+            className="flex items-center"
+            href="https://t.me/ewgenius"
+            target="__blank"
+          >
+            <MessageCircle className="mr-2" size={16} />
+            <span>t.me/ewgenius</span>
           </a>
         </li>
         <li>
-          <a href="https://vk.com/iewgenius" target="__blank">
-            <MessageCircle size={16} />
-            vk.com/iewgenius
+          <a
+            className="flex items-center"
+            href="https://vk.com/iewgenius"
+            target="__blank"
+          >
+            <MessageCircle className="mr-2" size={16} />
+            <span>vk.com/iewgenius</span>
           </a>
         </li>
       </ul>
@@ -36,9 +51,14 @@ export default function Contacts() {
   );
 }
 
-export const getStaticProps: GetStaticProps<{}> = async () => {
+export const getStaticProps: GetStaticProps<{}> = async ({ params }) => {
+  const lang = params.lang;
+  const messages = require(`../../content/${lang}/messages.json`);
+
   return {
-    props: {},
+    props: {
+      messages,
+    },
   };
 };
 
