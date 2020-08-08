@@ -13,10 +13,10 @@ export default function Home({ messages }: PropsWithLocale) {
     <Layout>
       <header className="flex flex-col justify-center items-center pb-8">
         <img className="w-48" src="/images/avatar.png" alt="logo" />
-        <h1 className="text-2xl font-bold">ewgenius</h1>
+        <h1 className="text-3xl font-bold">ewgenius</h1>
         <p className="text-gray-600">Making things...</p>
       </header>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col text-lg justify-center items-center">
         <nav className="">
           <Link as={`/${query.lang}/resume`} href="/[lang]/resume">
             <a className="flex items-center">

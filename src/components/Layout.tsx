@@ -36,18 +36,18 @@ export const Layout = ({
         {description && <meta name="description" content={description} />}
         {description && <meta name="og:description" content={description} />}
       </Head>
-      <div className="container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
+      <div className="font-sans text-gray-800 container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
         <main className="flex-grow">
           <nav className="flex flex-row pb-4">
             {title && (
-              <h1 className="flex text-4xl items-center">
+              <h1 className="flex text-4xl font-bold items-center">
                 {!disableBack && (
                   <Link
                     as={parentPage ? parentPage : "/" + lang}
                     href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
                   >
-                    <a className="mr-1">
-                      <ArrowLeftCircle />
+                    <a className="mr-2">
+                      <ArrowLeftCircle size={32} />
                     </a>
                   </Link>
                 )}

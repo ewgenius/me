@@ -22,14 +22,14 @@ export default function Resume({ messages, jobs }: ResumeProps) {
   const { lang } = useLocale();
   return (
     <Layout title={messages["page.resume"]}>
-      <section>
+      <section className="prose mb-4">
         <h3>About me</h3>
         {lang === "ru" ? <ResumeAboutRu /> : <ResumeAboutEn />}
       </section>
 
-      <section>
-        <h3>
-          <Briefcase size={20} />
+      <section className="py-4">
+        <h3 className="flex items-center text-2xl font-bold mb-2">
+          <Briefcase className="mr-2" size={24} />
           Work experience
         </h3>
         {Object.values(jobs)
