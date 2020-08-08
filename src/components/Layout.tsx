@@ -36,9 +36,9 @@ export const Layout = ({
         {description && <meta name="description" content={description} />}
         {description && <meta name="og:description" content={description} />}
       </Head>
-      <div className="container mx-auto max-w-4xl min-h-screen flex flex-col p-2">
+      <div className="container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
         <main className="flex-grow">
-          <nav className="flex flex-row py-4">
+          <nav className="flex flex-row pb-4">
             {title && (
               <h1 className="flex text-4xl items-center">
                 {!disableBack && (
@@ -60,7 +60,7 @@ export const Layout = ({
           </nav>
           {children}
         </main>
-        <footer className="flex flex-col justify-center items-center text-gray-600">
+        <footer className="flex flex-col justify-center items-center text-gray-600 mt-8">
           <div className="flex justify-center">
             <a
               className="text-gray-600 hover:text-gray-800 mr-1"
