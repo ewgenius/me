@@ -1,11 +1,12 @@
+import Link from "next/link";
+import { GetStaticProps } from "next";
+import { format } from "date-fns";
 import { Layout } from "@components/Layout";
 import { getLangStaticPaths } from "utils";
-import { GetStaticProps } from "next";
 import { PropsWithLocale } from "utils/withLocale";
-import { getPosts, Post } from "utils/ghost";
-import Link from "next/link";
+import { getPosts } from "utils/ghost";
+import { Post } from "utils/post";
 import { useLocale } from "utils/useLocale";
-import { format } from "date-fns";
 
 export type BlogProps = PropsWithLocale<{
   posts: Post[];

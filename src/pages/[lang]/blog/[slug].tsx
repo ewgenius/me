@@ -1,7 +1,8 @@
 import { Layout } from "@components/Layout";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { PropsWithLocale } from "utils/withLocale";
-import { getPosts, getPost, Post } from "utils/ghost";
+import { getPosts, getPost } from "utils/ghost";
+import { Post } from "utils/post";
 
 export type PostViewProps = PropsWithLocale<{
   post: Post;
