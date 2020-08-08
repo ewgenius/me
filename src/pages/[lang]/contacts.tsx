@@ -8,27 +8,39 @@ export default function Contacts() {
     <Layout title="Contacts">
       <ul className="contacts">
         <li>
-          <a href="mailto:ewgeniux@gmail.com">
-            <Mail size={16} />
-            ewgeniux@gmail.com
+          <a className="flex items-center" href="mailto:ewgeniux@gmail.com">
+            <Mail className="mr-1" size={16} />
+            <span>ewgeniux@gmail.com</span>
           </a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/ewgenius/" target="__blank">
-            <Linkedin size={16} />
-            linkedin/ewgenius
+          <a
+            className="flex items-center"
+            href="https://www.linkedin.com/in/ewgenius/"
+            target="__blank"
+          >
+            <Linkedin className="mr-1" size={16} />
+            <span>linkedin/ewgenius</span>
           </a>
         </li>
         <li>
-          <a href="https://t.me/ewgenius" target="__blank">
-            <MessageCircle size={16} />
-            t.me/ewgenius
+          <a
+            className="flex items-center"
+            href="https://t.me/ewgenius"
+            target="__blank"
+          >
+            <MessageCircle className="mr-1" size={16} />
+            <span>t.me/ewgenius</span>
           </a>
         </li>
         <li>
-          <a href="https://vk.com/iewgenius" target="__blank">
-            <MessageCircle size={16} />
-            vk.com/iewgenius
+          <a
+            className="flex items-center"
+            href="https://vk.com/iewgenius"
+            target="__blank"
+          >
+            <MessageCircle className="mr-1" size={16} />
+            <span>vk.com/iewgenius</span>
           </a>
         </li>
       </ul>
