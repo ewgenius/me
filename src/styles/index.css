@@ -11,3 +11,73 @@ a:hover,
 button:hover {
   @apply text-gray-600;
 }
+
+.kg-bookmark-card {
+  @apply w-full;
+}
+
+.kg-bookmark-container {
+  @apply flex text-gray-800 border border-gray-400 rounded-lg no-underline shadow-md overflow-hidden;
+  text-decoration: none !important;
+  transition: box-shadow 0.3s, color 0.3s;
+}
+
+.kg-bookmark-container:hover {
+  @apply text-gray-900 no-underline shadow-lg;
+}
+
+.kg-bookmark-content {
+  @apply flex flex-col flex-grow justify-start items-start py-4 px-6;
+}
+
+.kg-bookmark-title {
+  @apply font-bold;
+}
+
+.kg-bookmark-description {
+}
+
+.kg-bookmark-thumbnail {
+  position: relative;
+  min-width: 33%;
+  max-height: 100%;
+}
+
+.kg-bookmark-thumbnail img {
+  @apply absolute top-0 left-0 w-full h-full rounded-lg object-cover;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.kg-bookmark-metadata {
+  /* display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 14px;
+  color: color-mod(var(--midgrey) l(-10%));
+  font-size: 1.5rem;
+  font-weight: 400; */
+}
+
+.kg-bookmark-icon {
+  @apply w-6 h-6;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.kg-bookmark-author {
+  /* line-height: 1.5em; */
+}
+
+.kg-bookmark-author:after {
+  /* content: "•";
+  margin: 0 6px; */
+}
+
+.kg-bookmark-publisher {
+  /* overflow: hidden;
+  max-width: 240px;
+  line-height: 1.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+}
