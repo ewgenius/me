@@ -40,7 +40,7 @@ export const Layout = ({
         <main className="flex-grow">
           <nav className="flex flex-row pb-4 h-16">
             {title && (
-              <h1 className="flex text-4xl font-bold items-center">
+              <h1 className="flex text-2xl font-bold items-center">
                 {!disableBack && (
                   <Link
                     as={parentPage ? `/${lang}/${parentPage}` : `/${lang}`}

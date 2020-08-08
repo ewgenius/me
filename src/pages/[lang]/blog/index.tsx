@@ -11,11 +11,11 @@ export type BlogProps = PropsWithLocale<{
   posts: Post[];
 }>;
 
-export default function Blog({ posts }: BlogProps) {
+export default function Blog({ posts, messages }: BlogProps) {
   const { lang } = useLocale();
 
   return (
-    <Layout title="Blog">
+    <Layout title={messages["page.blog"]}>
       {posts.map((post) => (
         <Link
           key={post.id}
