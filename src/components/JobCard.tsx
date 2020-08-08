@@ -1,4 +1,4 @@
-import { Job } from "@data/jobs";
+import { Job } from "utils/job";
 import { useLocale } from "utils/useLocale";
 
 export const JobCard = ({ job }: { job: Job }) => {

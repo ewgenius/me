@@ -4,19 +4,9 @@ import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
 import { JobCard } from "@components/JobCard";
 import { getLangStaticPaths } from "utils";
+import { Job } from "utils/job";
 
 export type Dictionary<T = any> = { [id: string]: T };
-
-export interface Job extends FieldSet {
-  id: number;
-  name: string;
-  company: string;
-  startDate: string;
-  description_en?: string;
-  description_ru?: string;
-  endDate?: string;
-  tags?: string[];
-}
 
 // @ts-ignore
 import ResumeAboutRu from "@content/ru/resume-about.mdx";
