@@ -2,10 +2,13 @@ import { Mail, Linkedin, MessageCircle } from "react-feather";
 import { Layout } from "@components/Layout";
 import { GetStaticProps } from "next";
 import { getLangStaticPaths } from "utils";
+import { PropsWithLocale } from "utils/withLocale";
 
-export default function Contacts() {
+export type ContactsProps = PropsWithLocale<{}>;
+
+export default function Contacts({ messages }: ContactsProps) {
   return (
-    <Layout title="Contacts">
+    <Layout title={messages["page.contacts"]}>
       <ul className="ml-2 mt-4 text-lg">
         <li>
           <a className="flex items-center" href="mailto:ewgeniux@gmail.com">
@@ -48,9 +51,14 @@ export default function Contacts() {
   );
 }
 
-export const getStaticProps: GetStaticProps<{}> = async () => {
+export const getStaticProps: GetStaticProps<{}> = async ({ params }) => {
+  const lang = params.lang;
+  const messages = require(`../../content/${lang}/messages.json`);
+
   return {
-    props: {},
+    props: {
+      messages,
+    },
   };
 };
 
