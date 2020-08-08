@@ -13,7 +13,7 @@ export default function PostView({ post }: PostViewProps) {
   return (
     <Layout title={post.title}>
       <div
-        className="prose max-w-none"
+        className="mt-4 mb-16 prose max-w-none"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </Layout>
