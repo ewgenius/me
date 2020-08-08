@@ -46,7 +46,7 @@ export const Layout = ({
                     as={parentPage ? parentPage : "/" + lang}
                     href={parentPage ? `/[lang]/${parentPage}` : `/[lang]`}
                   >
-                    <a className="mr-2">
+                    <a className="mr-2 mt-1">
                       <ArrowLeftCircle size={32} />
                     </a>
                   </Link>
