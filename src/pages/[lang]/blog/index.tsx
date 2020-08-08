@@ -17,6 +17,11 @@ export default function Blog({ posts, messages }: BlogProps) {
 
   return (
     <Layout title={messages["page.blog"]}>
+      {posts.length === 0 && (
+        <div className="text-center text-gray-600 my-32">
+          Nothing here yet...
+        </div>
+      )}
       {posts.map((post) => (
         <Link
           key={post.id}

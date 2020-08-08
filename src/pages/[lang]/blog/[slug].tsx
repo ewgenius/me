@@ -19,7 +19,7 @@ export default function PostView({ post }: PostViewProps) {
         <img className="rounded-lg" src={post.feature_image} />
       )}
       <div
-        className="mt-4 mb-16 prose max-w-none"
+        className="mt-4 mb-16 prose prose-lg max-w-none"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </Layout>
