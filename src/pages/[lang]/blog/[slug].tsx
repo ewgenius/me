@@ -1,8 +1,7 @@
 import { Layout } from "@components/Layout";
 import { GetStaticPaths, GetStaticProps } from "next";
-import GhostContentAPI from "@tryghost/content-api";
 import { PropsWithLocale } from "utils/withLocale";
-import { Post } from "@data/post";
+import { getPosts, getPost, Post } from "utils/ghost";
 
 export type PostViewProps = PropsWithLocale<{
   post: Post;
@@ -27,16 +26,7 @@ export const getStaticProps: GetStaticProps<PostViewProps> = async ({
 }) => {
   const lang = params.lang;
   const messages = require(`../../../content/${lang}/messages.json`);
-
-  const ghostApi = new GhostContentAPI({
-    url: "https://blog.ewgenius.me",
-    key: "fe03ac3555290484c0bdc1aa99",
-    version: "v3",
-  });
-
-  const post = await ghostApi.posts.read({
-    slug: params.slug,
-  });
+  const post = await getPost(params.slug as string);
 
   return {
     props: {
@@ -47,16 +37,7 @@ export const getStaticProps: GetStaticProps<PostViewProps> = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const ghostApi = new GhostContentAPI({
-    url: "https://blog.ewgenius.me",
-    key: "fe03ac3555290484c0bdc1aa99",
-    version: "v3",
-  });
-
-  const posts: Post[] = await ghostApi.posts.browse({
-    limit: "all",
-  });
-
+  const posts: Post[] = await getPosts();
   const paths: { params: { lang: string; slug: string } }[] = posts.reduce(
     (list, post) => {
       return [
