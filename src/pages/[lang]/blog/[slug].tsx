@@ -1,7 +1,8 @@
 import { Layout } from "@components/Layout";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { PropsWithLocale } from "utils/withLocale";
-import { getPosts, getPost, Post } from "utils/ghost";
+import { getPosts, getPost } from "utils/ghost";
+import { Post } from "utils/post";
 
 export type PostViewProps = PropsWithLocale<{
   post: Post;
@@ -18,7 +19,7 @@ export default function PostView({ post }: PostViewProps) {
         <img className="rounded-lg" src={post.feature_image} />
       )}
       <div
-        className="mt-4 mb-16 prose max-w-none"
+        className="mt-4 mb-16 prose prose-lg max-w-none"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </Layout>

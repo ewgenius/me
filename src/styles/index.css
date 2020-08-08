@@ -122,4 +122,18 @@ button:hover {
   margin: -2.25em 0 3em;
 }
 
+/* embed */
+
+.kg-embed-card {
+  @apply flex justify-center items-center;
+}
+
+.kg-image-card {
+  @apply flex flex-col justify-center items-center;
+}
+
+.kg-image-card img {
+  @apply block rounded-lg;
+}
+
 /* purgecss end ignore */
