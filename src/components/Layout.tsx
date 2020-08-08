@@ -38,7 +38,7 @@ export const Layout = ({
       </Head>
       <div className="font-sans text-gray-800 container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
         <main className="flex-grow">
-          <nav className="flex flex-row pb-4">
+          <nav className="flex flex-row pb-4 h-16">
             {title && (
               <h1 className="flex text-4xl font-bold items-center">
                 {!disableBack && (

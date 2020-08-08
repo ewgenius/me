@@ -14,7 +14,7 @@ export const JobCard = ({ job }: { job: Job }) => {
       </p>
       {description && (
         <div
-          className="mt-1 prose prose-md"
+          className="mt-1 prose prose-sm"
           dangerouslySetInnerHTML={{ __html: description }}
         />
       )}
