@@ -9,15 +9,14 @@ import {
   ArrowLeftCircle,
 } from "react-feather";
 import { useLocale } from "utils/useLocale";
-import { ToggleTheme } from "@components/ToggleTheme";
 import { ToggleLang } from "@components/ToggleLang";
+// import { ToggleTheme } from "@components/ToggleTheme";
 
 export interface LayoutProps {
   title?: string;
   description?: string;
   disableBack?: boolean;
   parentPage?: string;
-  center?: boolean;
 }
 
 export const Layout = ({
@@ -26,7 +25,6 @@ export const Layout = ({
   description,
   disableBack,
   parentPage,
-  center,
 }: PropsWithChildren<LayoutProps>) => {
   const { lang } = useLocale();
 
@@ -58,7 +56,7 @@ export const Layout = ({
             )}
             <div className="flex-grow" />
             <ToggleLang />
-            <ToggleTheme />
+            {/* <ToggleTheme /> */}
           </nav>
           {children}
         </main>

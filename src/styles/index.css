@@ -1,3 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+a,
+button {
+  transition: 0.3s color;
+}
+
+a:hover,
+button:hover {
+  @apply text-gray-600;
+}
