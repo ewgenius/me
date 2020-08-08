@@ -3,9 +3,20 @@ import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
 import { JobCard } from "@components/JobCard";
-import { Dictionary } from "@data/dictionary";
-import { Job } from "@data/jobs";
 import { getLangStaticPaths } from "utils";
+
+export type Dictionary<T = any> = { [id: string]: T };
+
+export interface Job extends FieldSet {
+  id: number;
+  name: string;
+  company: string;
+  startDate: string;
+  description_en?: string;
+  description_ru?: string;
+  endDate?: string;
+  tags?: string[];
+}
 
 // @ts-ignore
 import ResumeAboutRu from "@content/ru/resume-about.mdx";
