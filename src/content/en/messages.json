@@ -3,5 +3,6 @@
   "nav.contacts": "contacts",
 
   "page.resume": "Resume",
-  "page.contacts": "Contacts"
+  "page.contacts": "Contacts",
+  "page.blog": "Blog"
 }
