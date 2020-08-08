@@ -12,6 +12,8 @@ button:hover {
   @apply text-gray-600;
 }
 
+/* purgecss start ignore */
+
 .kg-bookmark-card {
   @apply w-full;
 }
@@ -119,3 +121,5 @@ button:hover {
 .kg-image-card.kg-width-wide + .kg-image-card.kg-width-wide {
   margin: -2.25em 0 3em;
 }
+
+/* purgecss end ignore */
