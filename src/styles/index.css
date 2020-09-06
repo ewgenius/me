@@ -37,6 +37,11 @@ button:hover {
 }
 
 .kg-bookmark-description {
+  @apply text-sm;
+  max-height: 48px;
+  overflow-y: hidden;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
 }
 
 .kg-bookmark-thumbnail {
@@ -52,6 +57,7 @@ button:hover {
 }
 
 .kg-bookmark-metadata {
+  @apply text-sm mt-2;
   /* display: flex;
   flex-wrap: wrap;
   align-items: center;
