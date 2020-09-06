@@ -16,7 +16,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^2.15.0",
     "fathom-client": "^3.0.0",
-    "next": "^9.5.1",
+    "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@tailwindcss/ui": "^0.5.0",
     "@types/airtable": "^0.8.0",
     "@types/classnames": "^2.2.10",
     "@types/date-fns": "^2.6.0",
@@ -33,8 +34,8 @@
     "autoprefixer": "^9.8.6",
     "postcss-import": "^12.0.1",
     "prettier": "^2.0.4",
-    "tailwindcss": "^1.6.2",
-    "typescript": "^3.8.3"
+    "tailwindcss": "^1.8.3",
+    "typescript": "^3.9.7"
   },
   "keywords": [],
   "description": ""
