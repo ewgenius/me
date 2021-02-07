@@ -55,14 +55,14 @@ export default function Blog({ posts, messages }: BlogProps) {
 
 export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
   const lang = params.lang;
-  const messages = require(`../../../content/${lang}/messages.json`);
+  // const messages = require(`../../../content/${lang}/messages.json`);
 
-  const posts = await getPosts();
+  // const posts = await getPosts();
 
   return {
     props: {
-      messages,
-      posts,
+      messages: [],
+      posts: [],
     },
   };
 };

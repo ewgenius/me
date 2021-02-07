@@ -1,5 +1,5 @@
 import { Layout } from "@components/Layout";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import { PropsWithLocale } from "utils/withLocale";
 import { getPosts, getPost } from "utils/ghost";
 import { Post } from "utils/post";
@@ -30,32 +30,32 @@ export const getStaticProps: GetStaticProps<PostViewProps> = async ({
   params,
 }) => {
   const lang = params.lang;
-  const messages = require(`../../../content/${lang}/messages.json`);
-  const post = await getPost(params.slug as string);
+  // const messages = require(`../../../content/${lang}/messages.json`);
+  // const post = await getPost(params.slug as string);
 
   return {
     props: {
-      messages,
-      post,
+      messages: [],
+      post: [],
     },
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const posts: Post[] = await getPosts();
-  const paths: { params: { lang: string; slug: string } }[] = posts.reduce(
-    (list, post) => {
-      return [
-        ...list,
-        { params: { lang: "en", slug: post.slug } },
-        { params: { lang: "ru", slug: post.slug } },
-      ];
-    },
-    []
-  );
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const posts: Post[] = await getPosts();
+//   const paths: { params: { lang: string; slug: string } }[] = posts.reduce(
+//     (list, post) => {
+//       return [
+//         ...list,
+//         { params: { lang: "en", slug: post.slug } },
+//         { params: { lang: "ru", slug: post.slug } },
+//       ];
+//     },
+//     []
+//   );
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
