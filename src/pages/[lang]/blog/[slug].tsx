@@ -1,5 +1,5 @@
 import { Layout } from "@components/Layout";
-import { GetStaticProps } from "next";
+// import { GetStaticProps } from "next";
 import { PropsWithLocale } from "utils/withLocale";
 // import { getPosts, getPost } from "utils/ghost";
 import { Post } from "utils/post";
@@ -26,20 +26,20 @@ export default function PostView({ post }: PostViewProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<PostViewProps> = async ({
-  params,
-}) => {
-  const lang = params.lang;
-  // const messages = require(`../../../content/${lang}/messages.json`);
-  // const post = await getPost(params.slug as string);
+// export const getStaticProps: GetStaticProps<PostViewProps> = async ({
+//   params,
+// }) => {
+//   const lang = params.lang;
+//   // const messages = require(`../../../content/${lang}/messages.json`);
+//   // const post = await getPost(params.slug as string);
 
-  return {
-    props: {
-      messages: [],
-      post: [],
-    },
-  };
-};
+//   return {
+//     props: {
+//       messages: [],
+//       post: [],
+//     },
+//   };
+// };
 
 // export const getStaticPaths: GetStaticPaths = async () => {
 //   const posts: Post[] = await getPosts();
