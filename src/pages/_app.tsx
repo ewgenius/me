@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppPropsType) {
 
   useEffect(() => {
     // Initialize Fathom when the app loads
-    Fathom.load("TDBSHEND", {
+    Fathom.load("EPPOOMQT", {
       includedDomains: ["ewgenius.me"],
     });
 
