@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "react-feather";
 import { Layout } from "@components/Layout";
@@ -12,7 +13,7 @@ export default function Home({ messages }: PropsWithLocale) {
   return (
     <Layout>
       <header className="flex flex-col justify-center items-center pb-8">
-        <img className="w-48" src="/images/avatar.png" alt="logo" />
+        <Image src="/images/avatar.png" width={192} height={192} />
         <h1 className="text-3xl font-bold">ewgenius</h1>
         <p className="text-gray-600">Making things...</p>
       </header>
