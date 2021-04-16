@@ -91,7 +91,7 @@ export const Layout = ({
               <Linkedin size={16} />
             </a>
           </div>
-          <small>&copy; 2020, ewgenius.me</small>
+          <small>&copy; 2021, ewgenius.me</small>
         </footer>
       </div>
     </>
