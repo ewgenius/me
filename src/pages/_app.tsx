@@ -3,7 +3,7 @@ import { AppPropsType } from "next/dist/next-server/lib/utils";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import * as Fathom from "fathom-client";
-import "../styles/index.css";
+import "tailwindcss/tailwind.css";
 
 export default function App({ Component, pageProps }: AppPropsType) {
   const router = useRouter();

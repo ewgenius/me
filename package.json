@@ -8,34 +8,31 @@
     "start": "next start"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.6.6",
-    "@next/mdx": "^9.4.4",
-    "@tailwindcss/typography": "^0.2.0",
+    "@mdx-js/loader": "^1.6.22",
+    "@next/mdx": "^10.1.3",
     "@tryghost/content-api": "^1.4.2",
-    "airtable": "^0.8.1",
+    "airtable": "^0.10.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.15.0",
     "fathom-client": "^3.0.0",
-    "next": "^9.5.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-feather": "^2.0.8",
-    "use-dark-mode": "^2.3.1"
+    "next": "^10.1.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-feather": "^2.0.8"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
-    "@tailwindcss/ui": "^0.5.0",
+    "@tailwindcss/typography": "^0.4.0",
     "@types/airtable": "^0.8.0",
     "@types/classnames": "^2.2.10",
     "@types/date-fns": "^2.6.0",
-    "@types/node": "^13.13.1",
-    "@types/react": "^16.9.44",
+    "@types/node": "^14.14.41",
+    "@types/react": "^17.0.3",
     "@types/react-dom": "^16.9.8",
-    "autoprefixer": "^9.8.6",
-    "postcss-import": "^12.0.1",
-    "prettier": "^2.0.4",
-    "tailwindcss": "^1.8.3",
-    "typescript": "^3.9.7"
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.10",
+    "tailwindcss": "^2.1.1",
+    "typescript": "^4.2.4"
   },
   "keywords": [],
   "description": ""

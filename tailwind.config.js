@@ -1,36 +1,15 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
-  purge: {
-    enabled: false,
-  },
+  mode: "jit",
+  purge: ["./src/**/*.tsx"],
+  darkMode: "class",
   theme: {
     extend: {
-      typography: (theme) => ({
-        default: {
-          css: {
-            color: theme("colors.gray.800"),
-            h1: {
-              color: theme("colors.gray.800"),
-            },
-            h2: {
-              color: theme("colors.gray.800"),
-            },
-            h3: {
-              color: theme("colors.gray.800"),
-            },
-            h4: {
-              color: theme("colors.gray.800"),
-            },
-            a: {
-              color: theme("colors.gray.600"),
-              "&:hover": {
-                color: theme("colors.gray.800"),
-              },
-            },
-          },
-        },
-      }),
+      colors: {
+        gray: colors.trueGray,
+      },
     },
   },
-  variants: {},
-  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/ui")],
+  plugins: [require("@tailwindcss/typography")],
 };
