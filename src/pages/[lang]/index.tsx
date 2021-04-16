@@ -13,7 +13,7 @@ export default function Home({ messages }: PropsWithLocale) {
   return (
     <Layout>
       <header className="flex flex-col justify-center items-center pb-8">
-        <Image src="/images/avatar.png" width={192} height={192} />
+        <Image src="/images/avatar.png" width={192} height={192} alt="logo" />
         <h1 className="text-3xl font-bold">ewgenius</h1>
         <p className="text-gray-600">Making things...</p>
       </header>
