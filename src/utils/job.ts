@@ -1,6 +1,6 @@
-import { FieldSet } from "airtable";
+import Airtable from "airtable";
 
-export interface Job extends FieldSet {
+export interface Job extends Airtable.FieldSet {
   id: number;
   name: string;
   company: string;

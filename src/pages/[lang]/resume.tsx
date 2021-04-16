@@ -1,4 +1,4 @@
-import Airtable, { Table, FieldSet, Attachment } from "airtable";
+import Airtable from "airtable";
 import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps<ResumeProps> = async ({
     apiKey: process.env.AIRTABLE_API_KEY,
   }).base(process.env.AIRTABLE_DB_ID)(
     process.env.AIRTABLE_TABLE_ORDERS
-  ) as Table<Job>;
+  ) as Airtable.Table<Job>;
 
   const jobs = await jobsTable.select().all();
 

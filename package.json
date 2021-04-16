@@ -23,7 +23,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@tailwindcss/typography": "^0.4.0",
-    "@types/airtable": "^0.8.0",
+    "@types/airtable": "^0.8.1",
     "@types/classnames": "^2.2.10",
     "@types/date-fns": "^2.6.0",
     "@types/node": "^14.14.41",
