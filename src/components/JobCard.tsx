@@ -2,9 +2,9 @@ import { Job } from "utils/job";
 import { useLocale } from "utils/useLocale";
 
 export const JobCard = ({ job }: { job: Job }) => {
-  const { lang } = useLocale();
+  const { locale } = useLocale();
   const description =
-    (lang === "ru" && job.description_ru) || job.description_en;
+    (locale === "ru" && job.description_ru) || job.description_en;
   return (
     <div
       className="mb-4 relative ml-3 pb-1 pl-5 border-l-2 border-gray-500"

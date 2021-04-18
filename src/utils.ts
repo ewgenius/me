@@ -1,8 +1,8 @@
 import { GetStaticPaths } from "next";
 
-export const getLangStaticPaths: GetStaticPaths = async () => {
+export const getLocaleStaticPaths: GetStaticPaths = async ({ locales }) => {
   return {
-    paths: [{ params: { lang: "en" } }, { params: { lang: "ru" } }],
+    paths: locales.map((locale) => ({ params: { locale } })),
     fallback: false,
   };
 };

@@ -1,6 +1,6 @@
 import { Layout } from "@components/Layout";
 import { GetStaticProps } from "next";
-import { getLangStaticPaths } from "utils";
+import { getLocaleStaticPaths } from "utils";
 
 export default function Projects() {
   return <Layout title="Projects"></Layout>;
@@ -12,4 +12,4 @@ export const getStaticProps: GetStaticProps<{}> = async () => {
   };
 };
 
-export const getStaticPaths = getLangStaticPaths;
+export const getStaticPaths = getLocaleStaticPaths;

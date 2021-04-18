@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "react-feather";
 import { Layout } from "@components/Layout";
 import { GetStaticProps } from "next";
-import { getLangStaticPaths } from "utils";
+import { getLocaleStaticPaths } from "utils";
 import { PropsWithLocale } from "utils/withLocale";
 
 export default function Home({ messages }: PropsWithLocale) {
@@ -19,25 +19,13 @@ export default function Home({ messages }: PropsWithLocale) {
       </header>
       <div className="flex flex-col text-lg justify-center items-center">
         <nav className="">
-          <Link as={`/${query.lang}/resume`} href="/[lang]/resume">
+          <Link href="/resume">
             <a className="flex items-center">
               <ArrowRight className="mr-1" size={16} />
               {messages["nav.resume"]}
             </a>
           </Link>
-          {/* <Link href="/projects">
-          <a className="flex items-center">
-              <ArrowRight className="mr-1" size={16} />
-            projects
-          </a>
-        </Link> */}
-          {/* <Link href="/blog">
-          <a className="flex items-center">
-              <ArrowRight className="mr-1" size={16} />
-            blog
-          </a>
-        </Link> */}
-          <Link as={`/${query.lang}/contacts`} href="/[lang]/contacts">
+          <Link href="/contacts">
             <a className="flex items-center">
               <ArrowRight className="mr-1" size={16} />
               {messages["nav.contacts"]}
@@ -50,10 +38,9 @@ export default function Home({ messages }: PropsWithLocale) {
 }
 
 export const getStaticProps: GetStaticProps<PropsWithLocale> = async ({
-  params,
+  locale,
 }) => {
-  const lang = params.lang;
-  const messages = require(`../../content/${lang}/messages.json`);
+  const messages = require(`../content/${locale}/messages.json`);
   return {
     props: {
       messages,
@@ -61,4 +48,4 @@ export const getStaticProps: GetStaticProps<PropsWithLocale> = async ({
   };
 };
 
-export const getStaticPaths = getLangStaticPaths;
+export const getStaticPaths = getLocaleStaticPaths;

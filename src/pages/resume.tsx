@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
 import { JobCard } from "@components/JobCard";
-import { getLangStaticPaths } from "utils";
+import { getLocaleStaticPaths } from "utils";
 import { Job } from "utils/job";
 
 export type Dictionary<T = any> = { [id: string]: T };
@@ -20,12 +20,12 @@ export type ResumeProps = PropsWithLocale<{
 }>;
 
 export default function Resume({ messages, jobs }: ResumeProps) {
-  const { lang } = useLocale();
+  const { locale } = useLocale();
   return (
     <Layout title={messages["page.resume"]}>
       <section className="prose mb-4">
         <h3>About me</h3>
-        {lang === "ru" ? <ResumeAboutRu /> : <ResumeAboutEn />}
+        {locale === "ru" ? <ResumeAboutRu /> : <ResumeAboutEn />}
       </section>
 
       <section className="py-4">
@@ -44,10 +44,9 @@ export default function Resume({ messages, jobs }: ResumeProps) {
 }
 
 export const getStaticProps: GetStaticProps<ResumeProps> = async ({
-  params,
+  locale,
 }) => {
-  const lang = params.lang;
-  const messages = require(`../../content/${lang}/messages.json`);
+  const messages = require(`../content/${locale}/messages.json`);
 
   const jobsTable = new Airtable({
     apiKey: process.env.AIRTABLE_API_KEY,
@@ -92,4 +91,4 @@ export const getStaticProps: GetStaticProps<ResumeProps> = async ({
   };
 };
 
-export const getStaticPaths = getLangStaticPaths;
+export const getStaticPaths = getLocaleStaticPaths;

@@ -1,21 +1,20 @@
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
-export type Lang = "ru" | "en";
+export type Locale = "ru" | "en";
 
 export const useLocale = () => {
   const router = useRouter();
 
-  const lang = (router.query.lang as Lang) || "en";
+  const locale = router.locale || "en";
 
-  const toggleLang = useCallback(
+  const toggleLocale = useCallback(
     () =>
-      router.push(
-        router.pathname,
-        router.asPath.replace(lang, lang === "ru" ? "en" : "ru")
-      ),
-    [router.asPath, lang]
+      router.push(router.pathname, router.pathname, {
+        locale: locale === "ru" ? "en" : "ru",
+      }),
+    [router.asPath, locale]
   );
 
-  return { lang, toggleLang };
+  return { locale, toggleLocale };
 };
