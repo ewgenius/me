@@ -1,7 +1,6 @@
 import { Mail, Linkedin, MessageCircle } from "react-feather";
 import { Layout } from "@components/Layout";
-import { GetStaticProps } from "next";
-import { getLocaleStaticPaths, getLocaleStaticProps } from "utils";
+import { getLocaleStaticProps } from "utils";
 import { PropsWithLocale } from "@utils/withLocale";
 
 export type ContactsProps = PropsWithLocale<{}>;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "react-feather";
 import { Layout } from "@components/Layout";
-import { getLocaleStaticPaths, getLocaleStaticProps } from "utils";
+import { getLocaleStaticProps } from "utils";
 import { PropsWithLocale } from "@utils/withLocale";
 
 export default function Home({ messages }: PropsWithLocale) {
@@ -34,5 +34,3 @@ export default function Home({ messages }: PropsWithLocale) {
 }
 
 export const getStaticProps = getLocaleStaticProps;
-
-export const getStaticPaths = getLocaleStaticPaths;

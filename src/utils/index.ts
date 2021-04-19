@@ -1,12 +1,5 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import { PropsWithLocale } from "./withLocale";
-
-export const getLocaleStaticPaths: GetStaticPaths = async ({ locales }) => {
-  return {
-    paths: locales.map((locale) => ({ params: { locale } })),
-    fallback: false,
-  };
-};
 
 export const getLocaleStaticProps: GetStaticProps<PropsWithLocale> = async ({
   locale,
