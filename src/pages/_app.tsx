@@ -26,6 +26,26 @@ export default function App({ Component, pageProps }: AppPropsType) {
     };
   }, []);
 
+  useEffect(() => {
+    const prefersDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const setTheme = () => {
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) && prefersDarkQuery.matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    };
+
+    prefersDarkQuery.addEventListener("change", setTheme);
+    setTheme();
+
+    return () => prefersDarkQuery.removeEventListener("change", setTheme);
+  }, []);
+
   return (
     <>
       <Head>

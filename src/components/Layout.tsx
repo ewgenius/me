@@ -8,8 +8,8 @@ import {
   Linkedin,
   ArrowLeftCircle,
 } from "react-feather";
-import { useLocale } from "@utils/useLocale";
 import { ToggleLocale } from "@components/ToggleLocale";
+import { ToggleTheme } from "./ToggleTheme";
 // import { ToggleTheme } from "@components/ToggleTheme";
 
 export interface LayoutProps {
@@ -26,8 +26,6 @@ export const Layout = ({
   disableBack,
   parentPage,
 }: PropsWithChildren<LayoutProps>) => {
-  const { locale } = useLocale();
-
   return (
     <>
       <Head>
@@ -38,7 +36,7 @@ export const Layout = ({
       </Head>
       <div className="container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
         <main className="flex-grow">
-          <nav className="flex flex-row pb-4 h-16">
+          <nav className="flex flex-row justify-center items-center pb-4 h-16">
             {title && (
               <h1 className="flex text-2xl font-bold items-center">
                 {!disableBack && (
@@ -53,6 +51,7 @@ export const Layout = ({
             )}
             <div className="flex-grow" />
             <ToggleLocale />
+            <ToggleTheme />
             {/* <ToggleTheme /> */}
           </nav>
           {children}
