@@ -1,8 +1,8 @@
 import { Mail, Linkedin, MessageCircle } from "react-feather";
 import { Layout } from "@components/Layout";
 import { GetStaticProps } from "next";
-import { getLocaleStaticPaths } from "utils";
-import { PropsWithLocale } from "utils/withLocale";
+import { getLocaleStaticPaths, getLocaleStaticProps } from "utils";
+import { PropsWithLocale } from "@utils/withLocale";
 
 export type ContactsProps = PropsWithLocale<{}>;
 
@@ -51,14 +51,6 @@ export default function Contacts({ messages }: ContactsProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<{}> = async ({ locale }) => {
-  const messages = require(`../content/${locale}/messages.json`);
-
-  return {
-    props: {
-      messages,
-    },
-  };
-};
+export const getStaticProps = getLocaleStaticProps;
 
 export const getStaticPaths = getLocaleStaticPaths;

@@ -3,8 +3,8 @@ import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
 import { JobCard } from "@components/JobCard";
-import { getLocaleStaticPaths } from "utils";
-import { Job } from "utils/job";
+import { getLocaleStaticPaths } from "../utils";
+import { Job } from "@utils/job";
 
 export type Dictionary<T = any> = { [id: string]: T };
 
@@ -12,8 +12,8 @@ export type Dictionary<T = any> = { [id: string]: T };
 import ResumeAboutRu from "@content/ru/resume-about.mdx";
 // @ts-ignore
 import ResumeAboutEn from "@content/en/resume-about.mdx";
-import { useLocale } from "utils/useLocale";
-import { PropsWithLocale } from "utils/withLocale";
+import { useLocale } from "@utils/useLocale";
+import { PropsWithLocale } from "@utils/withLocale";
 
 export type ResumeProps = PropsWithLocale<{
   jobs: Dictionary<Job>;

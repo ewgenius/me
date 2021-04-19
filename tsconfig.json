@@ -17,7 +17,8 @@
     "jsx": "preserve",
     "paths": {
       "@components/*": ["./components/*"],
-      "@content/*": ["./content/*"]
+      "@content/*": ["./content/*"],
+      "@utils/*": ["./utils/*"]
     }
   },
   "exclude": ["node_modules"],

@@ -8,7 +8,7 @@ import {
   Linkedin,
   ArrowLeftCircle,
 } from "react-feather";
-import { useLocale } from "utils/useLocale";
+import { useLocale } from "@utils/useLocale";
 import { ToggleLocale } from "@components/ToggleLocale";
 // import { ToggleTheme } from "@components/ToggleTheme";
 
@@ -36,7 +36,7 @@ export const Layout = ({
         {description && <meta name="description" content={description} />}
         {description && <meta name="og:description" content={description} />}
       </Head>
-      <div className="text-gray-800 container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
+      <div className="container mx-auto max-w-4xl min-h-screen flex flex-col p-4">
         <main className="flex-grow">
           <nav className="flex flex-row pb-4 h-16">
             {title && (
@@ -60,28 +60,28 @@ export const Layout = ({
         <footer className="flex flex-col justify-center items-center text-gray-600 mt-8">
           <div className="flex justify-center">
             <a
-              className="text-gray-600 hover:text-gray-800 mr-1"
+              className="text-gray-600 hover:text-gray-800 dark:hover:text-gray-400 transition duration-300 mr-1"
               href="https://github.com/ewgenius"
               target="__blank"
             >
               <GitHub size={16} />
             </a>
             <a
-              className="text-gray-600 hover:text-gray-800 mr-1"
+              className="text-gray-600 hover:text-gray-800 dark:hover:text-gray-400 transition duration-300 mr-1"
               href="https://instagram.com/ewgeniux"
               target="__blank"
             >
               <Instagram size={16} />
             </a>
             <a
-              className="text-gray-600 hover:text-gray-800 mr-1"
+              className="text-gray-600 hover:text-gray-800 dark:hover:text-gray-400 transition duration-300 mr-1"
               href="https://twitter.com/ewgeniux"
               target="__blank"
             >
               <Twitter size={16} />
             </a>
             <a
-              className="text-gray-600 hover:text-gray-800"
+              className="text-gray-600 hover:text-gray-800 dark:hover:text-gray-400 transition duration-300"
               href="https://www.linkedin.com/in/ewgenius/"
               target="__blank"
             >

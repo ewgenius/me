@@ -1,6 +1,6 @@
 import { ToggleLeft, ToggleRight } from "react-feather";
 import classnames from "classnames";
-import { useLocale } from "utils/useLocale";
+import { useLocale } from "@utils/useLocale";
 
 export const ToggleLocale = () => {
   const { locale, toggleLocale } = useLocale();
