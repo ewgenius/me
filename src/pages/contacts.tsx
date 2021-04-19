@@ -52,5 +52,3 @@ export default function Contacts({ messages }: ContactsProps) {
 }
 
 export const getStaticProps = getLocaleStaticProps;
-
-export const getStaticPaths = getLocaleStaticPaths;
