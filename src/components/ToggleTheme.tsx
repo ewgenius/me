@@ -27,7 +27,7 @@ export const ToggleTheme = () => {
   );
 
   return (
-    <button onClick={toggleTheme} className="pl-4">
+    <button onClick={toggleTheme} className="pl-4 focus:outline-none">
       {theme === "light" ? <Moon /> : <Sun />}
     </button>
   );

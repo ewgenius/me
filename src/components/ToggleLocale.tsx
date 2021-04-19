@@ -7,7 +7,7 @@ export const ToggleLocale = () => {
   return (
     <button
       aria-label="toggle theme"
-      className="flex justify-center items-center"
+      className="flex justify-center items-center focus:outline-none"
       onClick={toggleLocale}
     >
       <span
