@@ -2,12 +2,11 @@
 import { GetStaticProps } from "next";
 import { Briefcase } from "react-feather";
 import { Layout } from "@components/Layout";
-import { Job } from "@utils/job";
 
 export type Dictionary<T = any> = { [id: string]: T };
 
 export type ResumeProps = {
-  jobs?: Dictionary<Job>;
+  jobs?: Dictionary<any>;
 };
 
 export default function Resume({ jobs }: ResumeProps) {
