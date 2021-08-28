@@ -8,7 +8,7 @@ import {
   Linkedin,
   ArrowLeftCircle,
 } from "react-feather";
-import { ToggleLocale } from "@components/ToggleLocale";
+// import { ToggleLocale } from "@components/ToggleLocale";
 import { ToggleTheme } from "./ToggleTheme";
 // import { ToggleTheme } from "@components/ToggleTheme";
 
@@ -50,7 +50,7 @@ export const Layout = ({
               </h1>
             )}
             <div className="flex-grow" />
-            <ToggleLocale />
+            {/* <ToggleLocale /> */}
             <ToggleTheme />
             {/* <ToggleTheme /> */}
           </nav>

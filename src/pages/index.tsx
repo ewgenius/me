@@ -2,10 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "react-feather";
 import { Layout } from "@components/Layout";
-import { getLocaleStaticProps } from "utils";
-import { PropsWithLocale } from "@utils/withLocale";
 
-export default function Home({ messages }: PropsWithLocale) {
+export default function Home() {
   return (
     <Layout>
       <header className="flex flex-col justify-center items-center pb-8">
@@ -15,16 +13,16 @@ export default function Home({ messages }: PropsWithLocale) {
       </header>
       <div className="flex flex-col text-lg justify-center items-center">
         <nav className="">
-          <Link href="/resume">
+          {/* <Link href="/resume">
             <a className="flex items-center">
               <ArrowRight className="mr-1" size={16} />
-              {messages["nav.resume"]}
+              resume
             </a>
-          </Link>
+          </Link> */}
           <Link href="/contacts">
             <a className="flex items-center">
               <ArrowRight className="mr-1" size={16} />
-              {messages["nav.contacts"]}
+              contacts
             </a>
           </Link>
         </nav>
@@ -32,5 +30,3 @@ export default function Home({ messages }: PropsWithLocale) {
     </Layout>
   );
 }
-
-export const getStaticProps = getLocaleStaticProps;

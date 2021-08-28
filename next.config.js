@@ -1,9 +1,8 @@
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
-});
+// const withMDX = require("@next/mdx")({
+//   extension: /\.mdx?$/,
+// });
 
-module.exports = withMDX({
-  i18n: { locales: ["en", "ru"], defaultLocale: "en" },
-
-  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
-});
+module.exports = {
+  // i18n: { locales: ["en", "ru"], defaultLocale: "en" },
+  // pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
+};

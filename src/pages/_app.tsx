@@ -1,26 +1,22 @@
 import Head from "next/head";
-import { AppPropsType } from "next/dist/next-server/lib/utils";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import * as Fathom from "fathom-client";
+import { AppPropsType } from "next/dist/shared/lib/utils";
+import * as Panelbear from "@panelbear/panelbear-js";
 import "tailwindcss/tailwind.css";
 
 export default function App({ Component, pageProps }: AppPropsType) {
   const router = useRouter();
 
   useEffect(() => {
-    // Initialize Fathom when the app loads
-    Fathom.load("EPPOOMQT", {
-      includedDomains: ["ewgenius.me"],
-    });
+    Panelbear.load("F7tQmArIkew");
+    Panelbear.trackPageview();
 
     function onRouteChangeComplete() {
-      Fathom.trackPageview();
+      Panelbear.trackPageview();
     }
-    // Record a pageview when route changes
     router.events.on("routeChangeComplete", onRouteChangeComplete);
 
-    // Unassign event listener
     return () => {
       router.events.off("routeChangeComplete", onRouteChangeComplete);
     };
