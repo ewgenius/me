@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.0",
+    "@notionhq/client": "^0.3.1",
     "@panelbear/panelbear-js": "^1.2.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.15.0",
