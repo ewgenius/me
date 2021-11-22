@@ -1,6 +1,11 @@
 import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+// import { Client as NotionClient } from "@notionhq/client";
+
+// const notion = new NotionClient({
+//   auth: process.env.NOTION_TOKEN,
+// });
 
 const links = [
   ["github.com/ewgenius", "https://github.com/ewgenius/"],
@@ -77,23 +82,29 @@ const Home: NextPage<Props> = (props) => {
             </p>
           </div>
 
-          <div className="my-16 flex-grow text-center">...</div>
+          {/* <div className="my-16 flex-grow text-center">...</div>
 
           <div className="prose">
             <b>My work experience:</b>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  return {
-    props: {
-      jobs: [],
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps<Props> = async () => {
+//   const { results } = await notion.databases.query({
+//     database_id: "8225e42a4cec4e069fc23dfbd769c54d",
+//   });
+
+//   console.log(results.map((i) => i.properties));
+
+//   return {
+//     props: {
+//       jobs: [],
+//     },
+//   };
+// };
 
 export default Home;
