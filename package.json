@@ -5,34 +5,22 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.0.0",
-    "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^10.1.3",
-    "airtable": "^0.10.1",
-    "classnames": "^2.2.6",
-    "date-fns": "^2.15.0",
-    "fathom-client": "^3.0.0",
-    "next": "^10.1.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-feather": "^2.0.8"
+    "next": "12.0.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.4.0",
-    "@types/airtable": "^0.8.1",
-    "@types/classnames": "^2.2.10",
-    "@types/date-fns": "^2.6.0",
-    "@types/node": "^14.14.41",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^16.9.8",
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.10",
-    "tailwindcss": "^2.1.1",
-    "typescript": "^4.2.4"
-  },
-  "keywords": [],
-  "description": ""
+    "@tailwindcss/typography": "^0.4.1",
+    "@types/react": "17.0.36",
+    "autoprefixer": "^10.4.0",
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.4",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19",
+    "typescript": "4.5.2"
+  }
 }

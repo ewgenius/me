@@ -1,36 +1,99 @@
+import type { NextPage, GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "react-feather";
-import { Layout } from "@components/Layout";
-import { getLocaleStaticProps } from "utils";
-import { PropsWithLocale } from "@utils/withLocale";
 
-export default function Home({ messages }: PropsWithLocale) {
-  return (
-    <Layout>
-      <header className="flex flex-col justify-center items-center pb-8">
-        <Image src="/images/avatar.png" width={192} height={192} alt="logo" />
-        <h1 className="text-3xl font-bold">ewgenius</h1>
-        <p className="text-gray-600 dark:text-gray-300">Making things...</p>
-      </header>
-      <div className="flex flex-col text-lg justify-center items-center">
-        <nav className="">
-          <Link href="/resume">
-            <a className="flex items-center">
-              <ArrowRight className="mr-1" size={16} />
-              {messages["nav.resume"]}
-            </a>
-          </Link>
-          <Link href="/contacts">
-            <a className="flex items-center">
-              <ArrowRight className="mr-1" size={16} />
-              {messages["nav.contacts"]}
-            </a>
-          </Link>
-        </nav>
-      </div>
-    </Layout>
-  );
+const links = [
+  ["github.com/ewgenius", "https://github.com/ewgenius/"],
+  ["linkedin.com/ewgenius", "https://www.linkedin.com/in/ewgenius/"],
+  ["instagram.com/ewgeniux", "https://instagram.com/ewgeniux/"],
+];
+
+interface Props {
+  jobs: any[];
 }
 
-export const getStaticProps = getLocaleStaticProps;
+const Home: NextPage<Props> = (props) => {
+  return (
+    <>
+      <Head>
+        <title>ewgenius</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Evgenii Khramkov personal page" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
+      <div className="container mx-auto min-h-screen flex flex-col items-center justify-center content-center">
+        <div className="mx-4 md:mx-0">
+          <div className="mt-8 flex flex-row flex-grow">
+            <Image
+              src="/images/avatar.png"
+              width={128}
+              height={128}
+              alt="logo"
+            />
+          </div>
+
+          <div className="prose mt-8">
+            <p>Hello!👋 I&apos;m Evgenii</p>
+            <p>
+              I&apos;m software developer, and currently I&apos;m working
+              at&nbsp;
+              <a
+                href="https://www.pandadoc.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                PandaDoc
+              </a>
+            </p>
+            <p>
+              You can find me at&nbsp;
+              {links.map(([title, link], i) => (
+                <>
+                  <a
+                    key={`contact-link-${i}`}
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {title}
+                  </a>
+                  {i === links.length - 1 ? null : i === links.length - 2 ? (
+                    <> and </>
+                  ) : (
+                    <>, </>
+                  )}
+                </>
+              ))}
+              ,<br />
+              or directly contact me at{" "}
+              <a className="text-blue-400" href="mailto:ewgeniux@gmail.com">
+                ewgeniux@gmail.com
+              </a>{" "}
+              and{" "}
+              <a href="https://t.me/ewgenius" target="_blank" rel="noreferrer">
+                t.me/ewgenius
+              </a>
+            </p>
+          </div>
+
+          <div className="my-16 flex-grow text-center">...</div>
+
+          <div className="prose">
+            <b>My work experience:</b>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  return {
+    props: {
+      jobs: [],
+    },
+  };
+};
+
+export default Home;
