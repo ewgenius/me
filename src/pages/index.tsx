@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -54,13 +55,8 @@ const Home: NextPage<Props> = (props) => {
             <p>
               You can find me at&nbsp;
               {links.map(([title, link], i) => (
-                <>
-                  <a
-                    key={`contact-link-${i}`}
-                    href={link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                <Fragment key={`contact-link-${i}`}>
+                  <a href={link} target="_blank" rel="noreferrer">
                     {title}
                   </a>
                   {i === links.length - 1 ? null : i === links.length - 2 ? (
@@ -68,7 +64,7 @@ const Home: NextPage<Props> = (props) => {
                   ) : (
                     <>, </>
                   )}
-                </>
+                </Fragment>
               ))}
               ,<br />
               or directly contact me at{" "}
