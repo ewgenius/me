@@ -1,12 +1,12 @@
 import { Fragment } from "react";
-import type { NextPage, GetStaticProps } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Client as NotionClient } from "@notionhq/client";
+// import { Client as NotionClient } from "@notionhq/client";
 
-const notion = new NotionClient({
-  auth: process.env.NOTION_TOKEN,
-});
+// const notion = new NotionClient({
+//   auth: process.env.NOTION_TOKEN,
+// });
 
 const links = [
   ["github.com/ewgenius", "https://github.com/ewgenius/"],
@@ -91,7 +91,7 @@ const Home: NextPage<Props> = ({ jobs }) => {
 
           <div className="my-16 flex-grow text-center">...</div>
 
-          <div className="mb-32">
+          {/* <div className="mb-32">
             <div className="mb-4">
               <b>My work experience:</b>
             </div>
@@ -111,39 +111,39 @@ const Home: NextPage<Props> = ({ jobs }) => {
                 ))}
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { results } = await notion.databases.query({
-    database_id: "8225e42a4cec4e069fc23dfbd769c54d",
-  });
+// export const getStaticProps: GetStaticProps<Props> = async () => {
+//   const { results } = await notion.databases.query({
+//     database_id: "8225e42a4cec4e069fc23dfbd769c54d",
+//   });
 
-  const jobs = results
-    .map((i) => {
-      const job = i.properties as any as Job;
+//   const jobs = results
+//     .map((i) => {
+//       const job = i.properties as any as Job;
 
-      return {
-        published: job.published.checkbox,
-        company: job.company.rich_text[0]?.plain_text,
-        title: job.title.title[0].plain_text,
-        startDate: job.interval.date?.start || null,
-        endDate: job.interval.date?.end || null,
-      };
-    })
-    .filter((i) => i.published);
+//       return {
+//         published: job.published.checkbox,
+//         company: job.company.rich_text[0]?.plain_text,
+//         title: job.title.title[0].plain_text,
+//         startDate: job.interval.date?.start || null,
+//         endDate: job.interval.date?.end || null,
+//       };
+//     })
+//     .filter((i) => i.published);
 
-  console.log(jobs);
+//   console.log(jobs);
 
-  return {
-    props: {
-      jobs,
-    },
-  };
-};
+//   return {
+//     props: {
+//       jobs,
+//     },
+//   };
+// };
 
 export default Home;
