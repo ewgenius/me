@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     Fathom.load("IYQFNUUM", {
-      includedDomains: ["yourdomain.com"],
+      includedDomains: ["ewgenius.me"],
     });
 
     function onRouteChangeComplete() {
