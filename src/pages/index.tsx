@@ -2,11 +2,11 @@ import { Fragment } from "react";
 import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-// import { Client as NotionClient } from "@notionhq/client";
+import { Client as NotionClient } from "@notionhq/client";
 
-// const notion = new NotionClient({
-//   auth: process.env.NOTION_TOKEN,
-// });
+const notion = new NotionClient({
+  auth: process.env.NOTION_TOKEN,
+});
 
 const links = [
   ["github.com/ewgenius", "https://github.com/ewgenius/"],
@@ -14,11 +14,22 @@ const links = [
   ["instagram.com/ewgeniux", "https://instagram.com/ewgeniux/"],
 ];
 
+interface Job {
+  description: any;
+  company: any;
+  published: any;
+  type: any;
+  icon: any;
+  tags: any;
+  interval: any;
+  title: any;
+}
+
 interface Props {
   jobs: any[];
 }
 
-const Home: NextPage<Props> = (props) => {
+const Home: NextPage<Props> = ({ jobs }) => {
   return (
     <>
       <Head>
@@ -78,29 +89,61 @@ const Home: NextPage<Props> = (props) => {
             </p>
           </div>
 
-          {/* <div className="my-16 flex-grow text-center">...</div>
+          <div className="my-16 flex-grow text-center">...</div>
 
-          <div className="prose">
-            <b>My work experience:</b>
-          </div> */}
+          <div className="mb-32">
+            <div className="mb-4">
+              <b>My work experience:</b>
+            </div>
+
+            <div>
+              <ul>
+                {jobs.map((job, i) => (
+                  <li key={`job-${i}`}>
+                    <div className="flex">
+                      <div>{job.company}</div>
+                      <div className="flex-grow" />
+                      <div className="text-right text-sm whitespace-nowrap text-gray-500">
+                        {job.startDate}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   const { results } = await notion.databases.query({
-//     database_id: "8225e42a4cec4e069fc23dfbd769c54d",
-//   });
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const { results } = await notion.databases.query({
+    database_id: "8225e42a4cec4e069fc23dfbd769c54d",
+  });
 
-//   console.log(results.map((i) => i.properties));
+  const jobs = results
+    .map((i) => {
+      const job = i.properties as any as Job;
 
-//   return {
-//     props: {
-//       jobs: [],
-//     },
-//   };
-// };
+      return {
+        published: job.published.checkbox,
+        company: job.company.rich_text[0]?.plain_text,
+        title: job.title.title[0].plain_text,
+        startDate: job.interval.date?.start || null,
+        endDate: job.interval.date?.end || null,
+      };
+    })
+    .filter((i) => i.published);
+
+  console.log(jobs);
+
+  return {
+    props: {
+      jobs,
+    },
+  };
+};
 
 export default Home;
