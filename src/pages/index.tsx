@@ -36,10 +36,15 @@ export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
         switch (block.type) {
           case "paragraph": {
             return (
-              <p key={block.id}>
+              <p key={block.id} className="break-words">
                 {block.paragraph.text.map((t) =>
                   t.href ? (
-                    <a href={t.href} target="_blank" rel="noreferrer">
+                    <a
+                      href={t.href}
+                      className="whitespace-nowrap"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {t.plain_text}
                     </a>
                   ) : (
@@ -69,45 +74,38 @@ const Home: NextPage<Props> = ({ resume }) => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <div className="container mx-auto min-h-screen flex flex-col items-center justify-center content-center">
-        <div className="mx-4 md:mx-0">
-          <div className="mt-8 flex flex-row flex-grow">
-            <Image
-              src="/images/avatar.png"
-              width={128}
-              height={128}
-              alt="logo"
-            />
-          </div>
+      <div className="container mx-auto max-w-2xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
+        <div className="mt-8 w-full">
+          <Image src="/images/avatar.png" width={128} height={128} alt="logo" />
+        </div>
 
-          <div className="prose mt-8">
-            {resume.map((item) => {
-              switch (item.type) {
-                case "Work Experience": {
-                  return (
-                    <div key={item.id} className="mb-8">
-                      <div>
-                        <b>{item.name}</b> at <b>{item.company}</b>
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        {item.date.start}
-                        {item.date.end && <> - {item.date.end}</>}
-                      </div>
+        <div className="prose w-full">
+          {resume.map((item) => {
+            switch (item.type) {
+              case "Work Experience": {
+                return (
+                  <div key={item.id} className="mb-8">
+                    <div>
+                      <b>{item.name}</b> at <b>{item.company}</b>
                     </div>
-                  );
-                }
-
-                case "Text Block":
-                default: {
-                  return (
-                    <div key={item.id} className="mb-8">
-                      <NotionPageRenderer page={item.page} />
+                    <div className="text-sm text-gray-400">
+                      {item.date.start}
+                      {item.date.end && <> - {item.date.end}</>}
                     </div>
-                  );
-                }
+                  </div>
+                );
               }
-            })}
-          </div>
+
+              case "Text Block":
+              default: {
+                return (
+                  <div key={item.id} className="mb-8">
+                    <NotionPageRenderer page={item.page} />
+                  </div>
+                );
+              }
+            }
+          })}
         </div>
       </div>
     </>
