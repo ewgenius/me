@@ -1,35 +1,65 @@
-import { Fragment } from "react";
-import type { NextPage } from "next";
+import { FC, Fragment } from "react";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-// import { Client as NotionClient } from "@notionhq/client";
+import { Client as NotionClient } from "@notionhq/client";
+import { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints";
 
-// const notion = new NotionClient({
-//   auth: process.env.NOTION_TOKEN,
-// });
-
-const links = [
-  ["github.com/ewgenius", "https://github.com/ewgenius/"],
-  ["linkedin.com/ewgenius", "https://www.linkedin.com/in/ewgenius/"],
-  ["instagram.com/ewgeniux", "https://instagram.com/ewgeniux/"],
-];
-
-interface Job {
-  description: any;
-  company: any;
-  published: any;
-  type: any;
-  icon: any;
-  tags: any;
-  interval: any;
-  title: any;
-}
+const notion = new NotionClient({
+  auth: process.env.NOTION_TOKEN,
+});
 
 interface Props {
-  jobs: any[];
+  resume: ResumeItem[];
 }
 
-const Home: NextPage<Props> = ({ jobs }) => {
+interface ResumeItem {
+  id: string;
+  page: ListBlockChildrenResponse;
+  name: string;
+  type: "Text Block" | "Study" | "Work Experience" | "Project";
+  order: number;
+  date: {
+    start: string;
+    end: string | null;
+  };
+  company: string;
+  properties: any;
+}
+
+export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
+  page,
+}) => {
+  return (
+    <div>
+      {page.results.map((block) => {
+        switch (block.type) {
+          case "paragraph": {
+            return (
+              <p key={block.id}>
+                {block.paragraph.text.map((t) =>
+                  t.href ? (
+                    <a href={t.href} target="_blank">
+                      {t.plain_text}
+                    </a>
+                  ) : (
+                    t.plain_text
+                  )
+                )}
+              </p>
+            );
+          }
+
+          default: {
+            return null;
+          }
+        }
+      })}
+    </div>
+  );
+};
+
+const Home: NextPage<Props> = ({ resume }) => {
   return (
     <>
       <Head>
@@ -51,99 +81,106 @@ const Home: NextPage<Props> = ({ jobs }) => {
           </div>
 
           <div className="prose mt-8">
-            <p>Hello!👋 I&apos;m Evgenii</p>
-            <p>
-              I&apos;m software developer, and currently I&apos;m working
-              at&nbsp;
-              <a
-                href="https://www.pandadoc.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                PandaDoc
-              </a>
-            </p>
-            <p>
-              You can find me at&nbsp;
-              {links.map(([title, link], i) => (
-                <Fragment key={`contact-link-${i}`}>
-                  <a href={link} target="_blank" rel="noreferrer">
-                    {title}
-                  </a>
-                  {i === links.length - 1 ? null : i === links.length - 2 ? (
-                    <> and </>
-                  ) : (
-                    <>, </>
-                  )}
-                </Fragment>
-              ))}
-              ,<br />
-              or directly contact me at{" "}
-              <a className="text-blue-400" href="mailto:ewgeniux@gmail.com">
-                ewgeniux@gmail.com
-              </a>{" "}
-              and{" "}
-              <a href="https://t.me/ewgenius" target="_blank" rel="noreferrer">
-                t.me/ewgenius
-              </a>
-            </p>
-          </div>
-
-          <div className="my-16 flex-grow text-center">...</div>
-
-          {/* <div className="mb-32">
-            <div className="mb-4">
-              <b>My work experience:</b>
-            </div>
-
-            <div>
-              <ul>
-                {jobs.map((job, i) => (
-                  <li key={`job-${i}`}>
-                    <div className="flex">
-                      <div>{job.company}</div>
-                      <div className="flex-grow" />
-                      <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                        {job.startDate}
+            {resume.map((item) => {
+              switch (item.type) {
+                case "Work Experience": {
+                  return (
+                    <div key={item.id} className="mb-8">
+                      <div>
+                        <b>{item.name}</b> at <b>{item.company}</b>
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {item.date.start}
+                        {item.date.end && <> - {item.date.end}</>}
                       </div>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div> */}
+                  );
+                }
+
+                case "Text Block":
+                default: {
+                  return (
+                    <div key={item.id} className="mb-8">
+                      <NotionPageRenderer page={item.page} />
+                    </div>
+                  );
+                }
+              }
+            })}
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   const { results } = await notion.databases.query({
-//     database_id: "8225e42a4cec4e069fc23dfbd769c54d",
-//   });
+interface PropertyType {
+  select: {
+    name: "Study";
+  };
+}
 
-//   const jobs = results
-//     .map((i) => {
-//       const job = i.properties as any as Job;
+interface PropertyNumber {
+  number: number;
+}
 
-//       return {
-//         published: job.published.checkbox,
-//         company: job.company.rich_text[0]?.plain_text,
-//         title: job.title.title[0].plain_text,
-//         startDate: job.interval.date?.start || null,
-//         endDate: job.interval.date?.end || null,
-//       };
-//     })
-//     .filter((i) => i.published);
+interface PropertyTitle {
+  title: {
+    text: {
+      content: string;
+    };
+  }[];
+}
 
-//   console.log(jobs);
+interface PropertyDate {
+  date: {
+    start: string;
+    end: string | null;
+  };
+}
 
-//   return {
-//     props: {
-//       jobs,
-//     },
-//   };
-// };
+interface PropertyRichText {
+  rich_text: {
+    plain_text: string;
+  }[];
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const { results } = await notion.databases.query({
+    database_id: process.env.NOTION_PAGE_ID as string,
+  });
+
+  const resume = (
+    await Promise.all(
+      results.map(async ({ id, properties }) => {
+        const type = (properties.Type as PropertyType).select.name;
+        const order = (properties.Order as PropertyNumber).number || 0;
+        const name =
+          (properties.Name as PropertyTitle).title[0].text.content || "";
+        const company =
+          (properties.Company as PropertyRichText).rich_text[0]?.plain_text ||
+          "";
+        const date = (properties.Date as PropertyDate).date;
+        const page = await notion.blocks.children.list({ block_id: id });
+        return {
+          id,
+          page,
+          name,
+          type,
+          order,
+          date,
+          company,
+          properties,
+        };
+      })
+    )
+  ).sort((a, b) => a.order - b.order);
+
+  return {
+    props: {
+      resume,
+    },
+  };
+};
 
 export default Home;
