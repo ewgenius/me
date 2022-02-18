@@ -163,20 +163,18 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
                     <div className="text-lg flex flex-row items-center">
                       {item.icon &&
                         (item.icon.type === "emoji" ? (
-                          <span className="text-[18px] mr-2">
-                            {item.icon.emoji}
-                          </span>
+                          <span className="mr-2">{item.icon.emoji}</span>
                         ) : item.icon.type === "external" ? (
                           <img
                             src={item.icon.external.url}
-                            className="w-[18px] h-[18px] mr-2"
+                            className="rounded-sm w-[18px] h-[18px] mr-2"
                             style={{ marginTop: 0, marginBottom: 0 }}
                             alt="logo"
                           />
                         ) : item.icon.type === "file" ? (
                           <img
                             src={item.icon.file.url}
-                            className="w-[18px] h-[18px] mr-2"
+                            className="rounded-sm w-[18px] h-[18px] mr-2"
                             style={{ marginTop: 0, marginBottom: 0 }}
                             alt="logo"
                           />
@@ -222,7 +220,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
           })}
         </div>
       </div>
-      <footer className="mt-16 py-16 border-t border-gray-200 flex flex-row items-center justify-center text-gray-400 text-xs">
+      <footer className="mt-16 pt-16 pb-8 border-t border-gray-200 flex flex-row items-center justify-center text-gray-400 text-xs">
         <p>2022 © ewgenius.me</p>
       </footer>
     </>
