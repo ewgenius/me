@@ -182,11 +182,9 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
                       <span>
                         <b>{item.name}</b> at <b>{item.company}</b>
                       </span>
-                      <span className="ml-1 text-gray-500">
-                        ({item.location})
-                      </span>
                     </div>
-                    <div className="text-sm text-gray-400 font-bold">
+                    <div className="text-sm text-gray-400">
+                      <span className="mr-2">{item.location}</span>
                       {item.date.start}
                       {item.date.end && <> - {item.date.end}</>}
                     </div>
