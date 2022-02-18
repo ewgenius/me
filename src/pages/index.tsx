@@ -160,7 +160,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
               case "Work Experience": {
                 return (
                   <div key={item.id} className="my-8">
-                    <div className="text-lg flex flex-row items-center">
+                    <div className="flex flex-row items-center">
                       {item.icon &&
                         (item.icon.type === "emoji" ? (
                           <span className="mr-2">{item.icon.emoji}</span>
