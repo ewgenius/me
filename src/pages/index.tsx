@@ -37,6 +37,7 @@ interface Props {
 
 interface ResumeItem {
   id: string;
+  icon: IconEmoji | AssetExternal | AssetFile | null;
   page: ListBlockChildrenResponse;
   name: string;
   type: "Text Block" | "Study" | "Work Experience" | "Project" | "Divider";
@@ -46,6 +47,7 @@ interface ResumeItem {
     end: string | null;
   };
   company: string;
+  location: string;
   properties: any;
 }
 
@@ -77,7 +79,30 @@ export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
             );
           }
 
+          case "bulleted_list_item": {
+            return (
+              <div key={block.id} className="break-words">
+                -{" "}
+                {block.bulleted_list_item.text.map((t) =>
+                  t.href ? (
+                    <a
+                      href={t.href}
+                      className="whitespace-nowrap"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t.plain_text}
+                    </a>
+                  ) : (
+                    t.plain_text
+                  )
+                )}
+              </div>
+            );
+          }
+
           default: {
+            console.log(block);
             return null;
           }
         }
@@ -134,13 +159,41 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
             switch (item.type) {
               case "Work Experience": {
                 return (
-                  <div key={item.id} className="my-4">
-                    <div>
-                      <b>{item.name}</b> at <b>{item.company}</b>
+                  <div key={item.id} className="my-8">
+                    <div className="text-lg flex flex-row items-center">
+                      {item.icon &&
+                        (item.icon.type === "emoji" ? (
+                          <span className="text-[18px] mr-2">
+                            {item.icon.emoji}
+                          </span>
+                        ) : item.icon.type === "external" ? (
+                          <img
+                            src={item.icon.external.url}
+                            className="w-[18px] h-[18px] mr-2"
+                            style={{ marginTop: 0, marginBottom: 0 }}
+                            alt="logo"
+                          />
+                        ) : item.icon.type === "file" ? (
+                          <img
+                            src={item.icon.file.url}
+                            className="w-[18px] h-[18px] mr-2"
+                            style={{ marginTop: 0, marginBottom: 0 }}
+                            alt="logo"
+                          />
+                        ) : null)}
+                      <span>
+                        <b>{item.name}</b> at <b>{item.company}</b>
+                      </span>
+                      <span className="ml-1 text-gray-500">
+                        ({item.location})
+                      </span>
                     </div>
-                    <div className="text-sm text-gray-400">
+                    <div className="text-sm text-gray-400 font-bold">
                       {item.date.start}
                       {item.date.end && <> - {item.date.end}</>}
+                    </div>
+                    <div className="prose-sm">
+                      <NotionPageRenderer page={item.page} />
                     </div>
                   </div>
                 );
@@ -218,13 +271,16 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   const resume = (
     await Promise.all(
-      results.map(async ({ id, properties }) => {
+      results.map(async ({ id, properties, icon }) => {
         const type = (properties.Type as PropertyType).select.name;
         const order = (properties.Order as PropertyNumber).number || 0;
         const name =
           (properties.Name as PropertyTitle).title[0]?.text.content || "";
         const company =
           (properties.Company as PropertyRichText).rich_text[0]?.plain_text ||
+          "";
+        const location =
+          (properties.Location as PropertyRichText).rich_text[0]?.plain_text ||
           "";
         const date = (properties.Date as PropertyDate).date;
         const page = await notion.blocks.children.list({ block_id: id });
@@ -236,6 +292,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
           order,
           date,
           company,
+          location,
+          icon,
           properties,
         };
       })
