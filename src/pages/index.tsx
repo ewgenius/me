@@ -17,7 +17,7 @@ interface ResumeItem {
   id: string;
   page: ListBlockChildrenResponse;
   name: string;
-  type: "Text Block" | "Study" | "Work Experience" | "Project";
+  type: "Text Block" | "Study" | "Work Experience" | "Project" | "Divider";
   order: number;
   date: {
     start: string;
@@ -84,7 +84,7 @@ const Home: NextPage<Props> = ({ resume }) => {
             switch (item.type) {
               case "Work Experience": {
                 return (
-                  <div key={item.id} className="mb-8">
+                  <div key={item.id} className="my-4">
                     <div>
                       <b>{item.name}</b> at <b>{item.company}</b>
                     </div>
@@ -96,10 +96,21 @@ const Home: NextPage<Props> = ({ resume }) => {
                 );
               }
 
+              case "Divider": {
+                return (
+                  <div
+                    key={item.id}
+                    className="my-12 flex flex-row text-center justify-center items-center text-gray-400"
+                  >
+                    <span>...</span>
+                  </div>
+                );
+              }
+
               case "Text Block":
               default: {
                 return (
-                  <div key={item.id} className="mb-8">
+                  <div key={item.id} className="my-8">
                     <NotionPageRenderer page={item.page} />
                   </div>
                 );
@@ -154,7 +165,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
         const type = (properties.Type as PropertyType).select.name;
         const order = (properties.Order as PropertyNumber).number || 0;
         const name =
-          (properties.Name as PropertyTitle).title[0].text.content || "";
+          (properties.Name as PropertyTitle).title[0]?.text.content || "";
         const company =
           (properties.Company as PropertyRichText).rich_text[0]?.plain_text ||
           "";
