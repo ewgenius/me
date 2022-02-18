@@ -39,7 +39,7 @@ export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
               <p key={block.id}>
                 {block.paragraph.text.map((t) =>
                   t.href ? (
-                    <a href={t.href} target="_blank">
+                    <a href={t.href} target="_blank" rel="noreferrer">
                       {t.plain_text}
                     </a>
                   ) : (
