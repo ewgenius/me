@@ -9,7 +9,29 @@ const notion = new NotionClient({
   auth: process.env.NOTION_TOKEN,
 });
 
+interface IconEmoji {
+  type: "emoji";
+  emoji: string;
+}
+
+interface AssetExternal {
+  type: "external";
+  external: {
+    url: string;
+  };
+}
+
+interface AssetFile {
+  type: "file";
+  file: {
+    url: string;
+    expiry_time: string;
+  };
+}
+
 interface Props {
+  icon: IconEmoji | AssetExternal | AssetFile | null;
+  cover: AssetExternal | AssetFile | null;
   resume: ResumeItem[];
 }
 
@@ -64,7 +86,7 @@ export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
   );
 };
 
-const Home: NextPage<Props> = ({ resume }) => {
+const Home: NextPage<Props> = ({ icon, cover, resume }) => {
   return (
     <>
       <Head>
@@ -74,12 +96,40 @@ const Home: NextPage<Props> = ({ resume }) => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
+
+      {cover && (
+        <div
+          className="w-full h-[220px] -mb-16"
+          style={{
+            backgroundSize: "cover",
+            backgroundImage: `url(${
+              cover.type === "external" ? cover.external.url : cover.file.url
+            })`,
+          }}
+        />
+      )}
+
       <div className="container mx-auto max-w-2xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
         <div className="mt-8 w-full">
-          <Image src="/images/avatar.png" width={128} height={128} alt="logo" />
+          {icon &&
+            (icon.type === "emoji" ? (
+              <span className="text-[48px] p-4">{icon.emoji}</span>
+            ) : icon.type === "external" ? (
+              <img
+                src={icon.external.url}
+                className="w-[128px] h-[128px]"
+                alt="logo"
+              />
+            ) : icon.type === "file" ? (
+              <img
+                src={icon.file.url}
+                className="w-[128px] h-[128px]"
+                alt="logo"
+              />
+            ) : null)}
         </div>
 
-        <div className="prose w-full">
+        <div className="prose w-full flex-grow">
           {resume.map((item) => {
             switch (item.type) {
               case "Work Experience": {
@@ -119,6 +169,9 @@ const Home: NextPage<Props> = ({ resume }) => {
           })}
         </div>
       </div>
+      <footer className="mt-16 py-16 border-t border-gray-200 flex flex-row items-center justify-center text-gray-400 text-xs">
+        <p>2022 © ewgenius.me</p>
+      </footer>
     </>
   );
 };
@@ -155,6 +208,10 @@ interface PropertyRichText {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+  const resumePage = await notion.databases.retrieve({
+    database_id: process.env.NOTION_PAGE_ID as string,
+  });
+
   const { results } = await notion.databases.query({
     database_id: process.env.NOTION_PAGE_ID as string,
   });
@@ -187,6 +244,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
+      icon: resumePage.icon,
+      cover: resumePage.cover,
       resume,
     },
   };
