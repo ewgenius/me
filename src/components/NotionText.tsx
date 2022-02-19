@@ -190,9 +190,10 @@ export type Text = Array<
 export const NotionText: FC<{ text: Text }> = ({ text }) => {
   return (
     <>
-      {text.map((t) => {
+      {text.map((t, i) => {
         return (
           <span
+            key={`text-${i}`}
             className={classNames(
               t.annotations.bold && "font-bold",
               t.annotations.italic && "italic",
