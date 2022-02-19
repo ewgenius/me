@@ -1,9 +1,8 @@
-import { FC, Fragment } from "react";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { Client as NotionClient } from "@notionhq/client";
 import { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints";
+import { NotionPageRenderer } from "../components/NotionPageRenderer";
 
 const notion = new NotionClient({
   auth: process.env.NOTION_TOKEN,
@@ -51,66 +50,6 @@ interface ResumeItem {
   properties: any;
 }
 
-export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
-  page,
-}) => {
-  return (
-    <div>
-      {page.results.map((block) => {
-        switch (block.type) {
-          case "paragraph": {
-            return (
-              <p key={block.id} className="break-words">
-                {block.paragraph.text.map((t) =>
-                  t.href ? (
-                    <a
-                      href={t.href}
-                      className="whitespace-nowrap"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {t.plain_text}
-                    </a>
-                  ) : (
-                    t.plain_text
-                  )
-                )}
-              </p>
-            );
-          }
-
-          case "bulleted_list_item": {
-            return (
-              <div key={block.id} className="break-words">
-                -{" "}
-                {block.bulleted_list_item.text.map((t) =>
-                  t.href ? (
-                    <a
-                      href={t.href}
-                      className="whitespace-nowrap"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {t.plain_text}
-                    </a>
-                  ) : (
-                    t.plain_text
-                  )
-                )}
-              </div>
-            );
-          }
-
-          default: {
-            console.log(block);
-            return null;
-          }
-        }
-      })}
-    </div>
-  );
-};
-
 const Home: NextPage<Props> = ({ icon, cover, resume }) => {
   return (
     <>
@@ -134,7 +73,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
         />
       )}
 
-      <div className="container mx-auto max-w-2xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
+      <div className="container mx-auto max-w-3xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
         <div className="mt-8 w-full">
           {icon &&
             (icon.type === "emoji" ? (
@@ -154,7 +93,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
             ) : null)}
         </div>
 
-        <div className="prose w-full flex-grow">
+        <div className="prose max-w-none w-full flex-grow">
           {resume.map((item) => {
             switch (item.type) {
               case "Work Experience": {
