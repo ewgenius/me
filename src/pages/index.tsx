@@ -1,35 +1,56 @@
-import { Fragment } from "react";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-// import { Client as NotionClient } from "@notionhq/client";
+import { Client as NotionClient } from "@notionhq/client";
+import { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints";
+import { NotionPageRenderer } from "../components/NotionPageRenderer";
 
-// const notion = new NotionClient({
-//   auth: process.env.NOTION_TOKEN,
-// });
+const notion = new NotionClient({
+  auth: process.env.NOTION_TOKEN,
+});
 
-const links = [
-  ["github.com/ewgenius", "https://github.com/ewgenius/"],
-  ["linkedin.com/ewgenius", "https://www.linkedin.com/in/ewgenius/"],
-  ["instagram.com/ewgeniux", "https://instagram.com/ewgeniux/"],
-];
+interface IconEmoji {
+  type: "emoji";
+  emoji: string;
+}
 
-interface Job {
-  description: any;
-  company: any;
-  published: any;
-  type: any;
-  icon: any;
-  tags: any;
-  interval: any;
-  title: any;
+interface AssetExternal {
+  type: "external";
+  external: {
+    url: string;
+  };
+}
+
+interface AssetFile {
+  type: "file";
+  file: {
+    url: string;
+    expiry_time: string;
+  };
 }
 
 interface Props {
-  jobs: any[];
+  icon: IconEmoji | AssetExternal | AssetFile | null;
+  cover: AssetExternal | AssetFile | null;
+  resume: ResumeItem[];
 }
 
-const Home: NextPage<Props> = ({ jobs }) => {
+interface ResumeItem {
+  id: string;
+  icon: IconEmoji | AssetExternal | AssetFile | null;
+  page: ListBlockChildrenResponse;
+  name: string;
+  type: "Text Block" | "Study" | "Work Experience" | "Project" | "Divider";
+  order: number;
+  date: {
+    start: string;
+    end: string | null;
+  };
+  company: string;
+  location: string;
+  properties: any;
+}
+
+const Home: NextPage<Props> = ({ icon, cover, resume }) => {
   return (
     <>
       <Head>
@@ -39,111 +60,189 @@ const Home: NextPage<Props> = ({ jobs }) => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <div className="container mx-auto min-h-screen flex flex-col items-center justify-center content-center">
-        <div className="mx-4 md:mx-0">
-          <div className="mt-8 flex flex-row flex-grow">
-            <Image
-              src="/images/avatar.png"
-              width={128}
-              height={128}
-              alt="logo"
-            />
-          </div>
 
-          <div className="prose mt-8">
-            <p>Hello!👋 I&apos;m Evgenii</p>
-            <p>
-              I&apos;m software developer, and currently I&apos;m working
-              at&nbsp;
-              <a
-                href="https://www.pandadoc.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                PandaDoc
-              </a>
-            </p>
-            <p>
-              You can find me at&nbsp;
-              {links.map(([title, link], i) => (
-                <Fragment key={`contact-link-${i}`}>
-                  <a href={link} target="_blank" rel="noreferrer">
-                    {title}
-                  </a>
-                  {i === links.length - 1 ? null : i === links.length - 2 ? (
-                    <> and </>
-                  ) : (
-                    <>, </>
-                  )}
-                </Fragment>
-              ))}
-              ,<br />
-              or directly contact me at{" "}
-              <a className="text-blue-400" href="mailto:ewgeniux@gmail.com">
-                ewgeniux@gmail.com
-              </a>{" "}
-              and{" "}
-              <a href="https://t.me/ewgenius" target="_blank" rel="noreferrer">
-                t.me/ewgenius
-              </a>
-            </p>
-          </div>
+      {cover && (
+        <div
+          className="w-full h-[220px] -mb-16"
+          style={{
+            backgroundSize: "cover",
+            backgroundImage: `url(${
+              cover.type === "external" ? cover.external.url : cover.file.url
+            })`,
+          }}
+        />
+      )}
 
-          <div className="my-16 flex-grow text-center">...</div>
+      <div className="container mx-auto max-w-3xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
+        <div className="mt-8 w-full">
+          {icon &&
+            (icon.type === "emoji" ? (
+              <span className="text-[48px] p-4">{icon.emoji}</span>
+            ) : icon.type === "external" ? (
+              <img
+                src={icon.external.url}
+                className="w-[128px] h-[128px]"
+                alt="logo"
+              />
+            ) : icon.type === "file" ? (
+              <img
+                src={icon.file.url}
+                className="w-[128px] h-[128px]"
+                alt="logo"
+              />
+            ) : null)}
+        </div>
 
-          {/* <div className="mb-32">
-            <div className="mb-4">
-              <b>My work experience:</b>
-            </div>
-
-            <div>
-              <ul>
-                {jobs.map((job, i) => (
-                  <li key={`job-${i}`}>
-                    <div className="flex">
-                      <div>{job.company}</div>
-                      <div className="flex-grow" />
-                      <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                        {job.startDate}
-                      </div>
+        <div className="prose max-w-none w-full flex-grow">
+          {resume.map((item) => {
+            switch (item.type) {
+              case "Work Experience": {
+                return (
+                  <div key={item.id} className="my-8">
+                    <div className="flex flex-row items-center">
+                      {item.icon &&
+                        (item.icon.type === "emoji" ? (
+                          <span className="mr-2">{item.icon.emoji}</span>
+                        ) : item.icon.type === "external" ? (
+                          <img
+                            src={item.icon.external.url}
+                            className="rounded-sm w-[18px] h-[18px] mr-2"
+                            style={{ marginTop: 0, marginBottom: 0 }}
+                            alt="logo"
+                          />
+                        ) : item.icon.type === "file" ? (
+                          <img
+                            src={item.icon.file.url}
+                            className="rounded-sm w-[18px] h-[18px] mr-2"
+                            style={{ marginTop: 0, marginBottom: 0 }}
+                            alt="logo"
+                          />
+                        ) : null)}
+                      <span>
+                        <b>{item.name}</b> at <b>{item.company}</b>
+                      </span>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div> */}
+                    <div className="text-sm text-gray-400">
+                      <span className="mr-2">{item.location}</span>
+                      {item.date.start}
+                      {item.date.end && <> - {item.date.end}</>}
+                    </div>
+                    <div className="prose-sm">
+                      <NotionPageRenderer page={item.page} />
+                    </div>
+                  </div>
+                );
+              }
+
+              case "Divider": {
+                return (
+                  <div
+                    key={item.id}
+                    className="my-12 flex flex-row text-center justify-center items-center text-gray-400"
+                  >
+                    <span>...</span>
+                  </div>
+                );
+              }
+
+              case "Text Block":
+              default: {
+                return (
+                  <div key={item.id} className="my-8">
+                    <NotionPageRenderer page={item.page} />
+                  </div>
+                );
+              }
+            }
+          })}
         </div>
       </div>
+      <footer className="mt-16 pt-16 pb-8 border-t border-gray-200 flex flex-row items-center justify-center text-gray-400 text-xs">
+        <p>2022 © ewgenius.me</p>
+      </footer>
     </>
   );
 };
 
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   const { results } = await notion.databases.query({
-//     database_id: "8225e42a4cec4e069fc23dfbd769c54d",
-//   });
+interface PropertyType {
+  select: {
+    name: "Study";
+  };
+}
 
-//   const jobs = results
-//     .map((i) => {
-//       const job = i.properties as any as Job;
+interface PropertyNumber {
+  number: number;
+}
 
-//       return {
-//         published: job.published.checkbox,
-//         company: job.company.rich_text[0]?.plain_text,
-//         title: job.title.title[0].plain_text,
-//         startDate: job.interval.date?.start || null,
-//         endDate: job.interval.date?.end || null,
-//       };
-//     })
-//     .filter((i) => i.published);
+interface PropertyTitle {
+  title: {
+    text: {
+      content: string;
+    };
+  }[];
+}
 
-//   console.log(jobs);
+interface PropertyDate {
+  date: {
+    start: string;
+    end: string | null;
+  };
+}
 
-//   return {
-//     props: {
-//       jobs,
-//     },
-//   };
-// };
+interface PropertyRichText {
+  rich_text: {
+    plain_text: string;
+  }[];
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const resumePage = await notion.databases.retrieve({
+    database_id: process.env.NOTION_PAGE_ID as string,
+  });
+
+  const { results } = await notion.databases.query({
+    database_id: process.env.NOTION_PAGE_ID as string,
+  });
+
+  const resume = (
+    await Promise.all(
+      results.map(async ({ id, properties, icon }) => {
+        const type = (properties.Type as PropertyType).select.name;
+        const order = (properties.Order as PropertyNumber).number || 0;
+        const name =
+          (properties.Name as PropertyTitle).title[0]?.text.content || "";
+        const company =
+          (properties.Company as PropertyRichText).rich_text[0]?.plain_text ||
+          "";
+        const location =
+          (properties.Location as PropertyRichText).rich_text[0]?.plain_text ||
+          "";
+        const date = (properties.Date as PropertyDate).date;
+        const page = await notion.blocks.children.list({ block_id: id });
+        return {
+          id,
+          page,
+          name,
+          type,
+          order,
+          date,
+          company,
+          location,
+          icon,
+          properties,
+        };
+      })
+    )
+  ).sort((a, b) => a.order - b.order);
+
+  return {
+    props: {
+      icon: resumePage.icon,
+      cover: resumePage.cover,
+      resume,
+    },
+    revalidate: 60,
+  };
+};
 
 export default Home;
