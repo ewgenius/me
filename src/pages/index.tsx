@@ -241,6 +241,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       cover: resumePage.cover,
       resume,
     },
+    revalidate: 60,
   };
 };
 
