@@ -75,7 +75,12 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
 
       <div className="container mx-auto max-w-3xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
         <div className="mt-8 w-full">
-          {icon &&
+          <img
+            src="/images/avatar.png"
+            className="w-[128px] h-[128px]"
+            alt="logo"
+          />
+          {/* {icon &&
             (icon.type === "emoji" ? (
               <span className="text-[48px] p-4">{icon.emoji}</span>
             ) : icon.type === "external" ? (
@@ -90,7 +95,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
                 className="w-[128px] h-[128px]"
                 alt="logo"
               />
-            ) : null)}
+            ) : null)} */}
         </div>
 
         <div className="prose max-w-none w-full flex-grow">
