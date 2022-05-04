@@ -211,7 +211,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   const resume = (
     await Promise.all(
-      results.map(async ({ id, properties, icon }) => {
+      results.map(async (result: any) => {
+        const { id, properties, icon } = result;
         const type = (properties.Type as PropertyType).select.name;
         const order = (properties.Order as PropertyNumber).number || 0;
         const name =
