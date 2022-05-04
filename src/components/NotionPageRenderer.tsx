@@ -7,7 +7,7 @@ export const NotionPageRenderer: FC<{ page: ListBlockChildrenResponse }> = ({
 }) => {
   return (
     <div>
-      {page.results.map((block) => {
+      {page.results.map((block: any) => {
         switch (block.type) {
           case "paragraph": {
             return (
