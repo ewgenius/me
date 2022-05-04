@@ -243,8 +243,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
-      icon: resumePage.icon,
-      cover: resumePage.cover,
+      icon: (resumePage as any).icon,
+      cover: (resumePage as any).cover,
       resume,
     },
     revalidate: 60,
