@@ -190,34 +190,35 @@ export type Text = Array<
 export const NotionText: FC<{ text: Text }> = ({ text }) => {
   return (
     <>
-      {text.map((t, i) => {
-        return (
-          <span
-            key={`text-${i}`}
-            className={classNames(
-              t.annotations.bold && "font-bold",
-              t.annotations.italic && "italic",
-              t.annotations.code && "font-mono bg-gray-300 rounded px-1",
-              t.annotations.underline && "underline",
-              t.annotations.strikethrough && "line-through",
-              t.annotations.color && `text-${t.annotations.color}-500`
-            )}
-          >
-            {t.href ? (
-              <a
-                href={t.href}
-                className="whitespace-nowrap"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t.plain_text}
-              </a>
-            ) : (
-              t.plain_text
-            )}
-          </span>
-        );
-      })}
+      {text &&
+        text.map((t, i) => {
+          return (
+            <span
+              key={`text-${i}`}
+              className={classNames(
+                t.annotations.bold && "font-bold",
+                t.annotations.italic && "italic",
+                t.annotations.code && "font-mono bg-gray-300 rounded px-1",
+                t.annotations.underline && "underline",
+                t.annotations.strikethrough && "line-through",
+                t.annotations.color && `text-${t.annotations.color}-500`
+              )}
+            >
+              {t.href ? (
+                <a
+                  href={t.href}
+                  className="whitespace-nowrap"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t.plain_text}
+                </a>
+              ) : (
+                t.plain_text
+              )}
+            </span>
+          );
+        })}
     </>
   );
 };
