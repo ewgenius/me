@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Client as NotionClient } from "@notionhq/client";
 import { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionPageRenderer } from "../components/NotionPageRenderer";
+import Image from "next/image";
 
 const notion = new NotionClient({
   auth: process.env.NOTION_TOKEN,
@@ -44,6 +45,7 @@ interface ResumeItem {
   date: {
     start: string;
     end: string | null;
+    duration?: number;
   };
   company: string;
   location: string;
@@ -75,27 +77,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
 
       <div className="container mx-auto max-w-3xl px-4 2xl:px-0 min-h-screen flex flex-col items-center justify-center content-center">
         <div className="mt-8 w-full">
-          <img
-            src="/images/avatar.png"
-            className="w-[128px] h-[128px]"
-            alt="logo"
-          />
-          {/* {icon &&
-            (icon.type === "emoji" ? (
-              <span className="text-[48px] p-4">{icon.emoji}</span>
-            ) : icon.type === "external" ? (
-              <img
-                src={icon.external.url}
-                className="w-[128px] h-[128px]"
-                alt="logo"
-              />
-            ) : icon.type === "file" ? (
-              <img
-                src={icon.file.url}
-                className="w-[128px] h-[128px]"
-                alt="logo"
-              />
-            ) : null)} */}
+          <Image src="/images/avatar.png" width={128} height={128} alt="logo" />
         </div>
 
         <div className="prose max-w-none w-full flex-grow">
@@ -109,6 +91,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
                         (item.icon.type === "emoji" ? (
                           <span className="mr-2">{item.icon.emoji}</span>
                         ) : item.icon.type === "external" ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={item.icon.external.url}
                             className="rounded-sm w-[18px] h-[18px] mr-2"
@@ -116,6 +99,7 @@ const Home: NextPage<Props> = ({ icon, cover, resume }) => {
                             alt="logo"
                           />
                         ) : item.icon.type === "file" ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={item.icon.file.url}
                             className="rounded-sm w-[18px] h-[18px] mr-2"
@@ -200,6 +184,13 @@ interface PropertyRichText {
   }[];
 }
 
+function parseDate(date: PropertyDate["date"]) {}
+
+function formatDate(date: Date): string {
+  const month = date.getMonth() + 1;
+  return `${date.getFullYear()}/${(month < 10 ? "0" : "") + month}`;
+}
+
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const resumePage = await notion.databases.retrieve({
     database_id: process.env.NOTION_PAGE_ID as string,
@@ -224,6 +215,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
           (properties.Location as PropertyRichText).rich_text[0]?.plain_text ||
           "";
         const date = (properties.Date as PropertyDate).date;
+        const parsedDate = date && {
+          start: formatDate(new Date(date.start)),
+          end: date.end ? formatDate(new Date(date.end)) : null,
+        };
         const page = await notion.blocks.children.list({ block_id: id });
         return {
           id,
@@ -231,7 +226,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
           name,
           type,
           order,
-          date,
+          date: parsedDate,
           company,
           location,
           icon,
