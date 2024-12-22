@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const berkeleyMono = localFont({
   src: "./fonts/BerkeleyMono-Regular.woff",
   variable: "--font-mono",
+  weight: "400 600",
 });
 
 export const metadata: Metadata = {

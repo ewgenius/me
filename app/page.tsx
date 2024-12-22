@@ -35,7 +35,7 @@ export default function Home() {
             >
               linkedin.com/ewgenius
             </a>{" "}
-            or directly contact me at
+            or directly contact me at{" "}
             <a
               href="mailto:hey@ewgenius.me"
               className="whitespace-nowrap font-semibold hover:underline"
