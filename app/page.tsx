@@ -6,7 +6,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto text-sm">
         <div className="space-y-2 max-w-2xl">
           <Asciivatar />
-          <p className="break-words">Hello!👋 I'm Evgenii</p>
+          <p className="break-words">Hello!👋 I&apos;m Evgenii</p>
           <p className="break-words">
             You can find me at{" "}
             <a
