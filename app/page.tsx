@@ -11,7 +11,7 @@ export default function Home() {
             You can find me at{" "}
             <a
               href="https://github.com/ewgenius"
-              className="whitespace-nowrap font-semibold hover:underline"
+              className="whitespace-nowrap underline"
               target="_blank"
               rel="noreferrer"
             >
@@ -20,7 +20,7 @@ export default function Home() {
             ,{" "}
             <a
               href="https://x.com/ewgeniux"
-              className="whitespace-nowrap font-semibold hover:underline"
+              className="whitespace-nowrap underline"
               target="_blank"
               rel="noreferrer"
             >
@@ -29,7 +29,7 @@ export default function Home() {
             ,{" "}
             <a
               href="https://www.linkedin.com/in/ewgenius"
-              className="whitespace-nowrap font-semibold hover:underline"
+              className="whitespace-nowrap underline"
               target="_blank"
               rel="noreferrer"
             >
@@ -38,7 +38,7 @@ export default function Home() {
             or directly contact me at{" "}
             <a
               href="mailto:hey@ewgenius.me"
-              className="whitespace-nowrap font-semibold hover:underline"
+              className="whitespace-nowrap underline"
               target="_blank"
               rel="noreferrer"
             >
@@ -47,7 +47,7 @@ export default function Home() {
             or{" "}
             <a
               href="https://t.me/ewgenius"
-              className="whitespace-nowrap font-semibold hover:underline"
+              className="whitespace-nowrap underline"
               target="_blank"
               rel="noreferrer"
             >
